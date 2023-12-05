@@ -1,68 +1,29 @@
-// import logo from './logo.svg';
-// import './App.css';
+// import the library
+import { library } from '@fortawesome/fontawesome-svg-core'
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
+// import your icons
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
+import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 
-// export default App;
+
+import './App.css';
+import Nav_left from './Nav/Nav-left/Nav_left'
 
 
 
-// function Profile() {
-//   return (
-//     <img
-//       src="https://i.imgur.com/MK3eW3As.jpg"
-//       alt="Katherine Johnson"
-//     />
-//   );
-// }
 
-// export default function Gallery() {
-//   return (
-//     <section>
-//       <h1>Amazing scientists</h1>
-//       <Profile />
-//       <Profile />
-//       <Profile />
-//     </section>
-//   );
-// }
 
-// import { Profile } from './Gallery.js';
-// import Gallery from './Gallery.js';
-
-// export default function App() {
-//   return (
-//     <Gallery />
-//   );
-// }
-// export default function App() {
-//   return <Profile />;
-// }
-
-import Gallery from './Gallery.js';
-import { Profile } from './Gallery.js';
-
-export default function App() {
+function App() {
   return (
-    <Profile />
+    <div className="App">
+     <Nav_left/>
+    </div>
   );
 }
+
+export default App;
+library.add(fab, fas, far,faTwitter, faFontAwesome)
+
+

@@ -1,0 +1,28 @@
+.search-section{
+    width:240px;
+    height:40px;
+    margin-left:12px;
+    border:none;
+    border-radius: 25px;
+    outline:none;
+    background-color: #F0F2F5;
+    display: flex;
+}
+
+.search-section .icon-search{
+    color:#585c65;
+    width:16px;
+    height:16px;
+    margin:12px 0px 12px 12px;
+}
+
+.search-section > input{
+    width:212px;
+    height:40px;
+    padding:7px 8px 9px;
+    border:none;
+    border-radius: 25px;
+    outline:none;
+    background-color: #F0F2F5;
+    font-size: 15px;
+}

@@ -1,0 +1,7 @@
+.nav_left{
+    display: flex;
+    align-items: center;
+    width:320px;
+    height:56px;
+    padding: 0px 0px 0px 0px;
+}
