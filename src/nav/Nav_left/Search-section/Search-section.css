@@ -7,6 +7,8 @@
     outline:none;
     background-color: #F0F2F5;
     display: flex;
+    position:relative;
+    z-index: 0;
 }
 
 .search-section .icon-search{
@@ -25,4 +27,6 @@
     outline:none;
     background-color: #F0F2F5;
     font-size: 15px;
+    position: absolute;
+    z-index: 4;
 }

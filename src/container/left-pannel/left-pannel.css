@@ -1,0 +1,119 @@
+.left-panel{
+    position: sticky;
+    top:30px;
+    width:311px;
+    height:calc(115vh - 70px);
+    overflow-y: auto;
+}
+
+.left-panel .left-panel-but{
+    position: sticky;
+    width:311px;
+    margin-top: 10px;
+    height:calc(115vh - 70px);
+}
+
+.left-panel .left-panel-but ul{
+    list-style-type: none;
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    width:311px;
+    padding: 0px 8px;
+    overflow-y: auto;
+}
+
+
+.left-panel .left-panel-but ul li{
+    list-style-type: none;
+    display: flex;
+    width:295px;
+    height:52px;
+    padding: 0px 8px;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.left-panel .left-panel-but ul li:hover{
+    background: #ddd;
+}
+
+.left-panel .left-panel-but ul li > p{
+    margin-left: 10px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#050505;
+}
+.left-panel .left-panel-but ul li > img{
+    height:36px;
+    width:36px;
+    border-radius :50%;
+    object-fit: cover;
+}
+.left-panel .left-panel-but ul li .down-chn{
+    height:36px;
+    width:36px;
+    border-radius :50%;
+    background-color: #E4E6EB;
+    object-fit: cover;
+}
+.left-panel .left-panel-but ul li .down-chn a{
+    align-items: center;
+}
+.left-panel .left-panel-but ul li .down-chn a> i{
+    padding: 8px 8px 8px 8px;
+    font-size: 20px;
+    border-radius: 50%;
+    color: rgb(0, 0, 0);
+}
+
+.left-panel .left-panel-but ul li .profile{
+    /* background: url('./images/avt/selfpic.jpg'); */
+    height:36px;
+    width:36px;
+    background-size:cover;
+    border-radius: 50%;
+    cursor: pointer;
+    
+}
+
+.left-panel .left-panel-but ul li .see-more a{
+    text-decoration: none;
+    color:#333;
+    height:28px;
+    width :28px;
+    border-radius: 50%;
+    background : #E4E6EB;
+    place-items:center;
+    margin-right: 10px;
+
+}
+.left-panel .left-panel-but ul li .see-more a > i{
+    font-size:20px;
+    place-items: center;
+}
+
+.left-panel .links{
+    padding:5px 1rem;
+}
+.c4{
+    display: flex;
+}
+.c3l{
+    display: flex;
+}
+
+  .left-panel .links p{
+    text-decoration: none;
+    color:#65676B;
+    font-size:13px;
+    cursor: pointer;
+}
+
+.dot{
+    color:#65676B;
+    padding: 2px 2px;
+    margin-top: -6px;
+}

@@ -2,7 +2,7 @@ import "./Search-section.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-export default function Search_section() {
+export default function SearchSection() {
 	return(
 		<>
 		    <div class="search-section">

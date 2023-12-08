@@ -1,0 +1,68 @@
+.nav-right{
+    width:204px;
+    height:56px;
+    padding: 0px 16px 0px 4px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-right .profile {
+    /* background: url("./icon/bell.svg"); */
+    height:30px;
+    width:30px;
+    background-size: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    scale: 1.2;
+}
+
+.nav-right a{
+    text-decoration: none;
+    color:#333;
+    height:40px;
+    width:40px;
+    border-radius: 50%;
+    background:#eee;
+    display:flex;
+    place-items: center;
+    margin-right: 10px;
+    position: relative;
+    z-index: 1;
+}
+.nav-right a > img{
+    font-size:20px;
+    width:20px;
+    height:20px;
+    place-items: center;
+    margin-top:5px;
+    margin-left: 10px;
+}
+.nav-dot-bl{
+    position:absolute;
+    z-index: 3;
+    background-color: #e91c1c;
+    border:#fff 2px solid;
+    width:20px;
+    height:20px;
+    border-radius:50px;
+    margin-top: -33px;
+    margin-left: 25px;
+}
+.nav-dot-bl p{
+    color:#fff;
+    font-size: 13px;
+    padding :0px 5px;
+    margin-top: 1px;
+}
+
+.nav-dot-bl-pf{
+    position:absolute;
+    z-index: 3;
+    background-color: #cc2121;
+    border:#fff 2px solid;
+    width:12px;
+    height:12px;
+    border-radius:50px;
+    margin-top: -2px;
+    margin-left: 16.5px;
+}
