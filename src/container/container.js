@@ -1,4 +1,4 @@
-import './Container.css'
+import './container.css'
 
 
 import LeftPanel from './Left-panel/Left-panel'

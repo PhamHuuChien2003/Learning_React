@@ -21,7 +21,7 @@ export default function SponsoredSection() {
 
     return(
         <div class="sponsored">
-            <ul>{List_Sponsored}</ul>
+            {List_Sponsored}
          </div>
     )
 }

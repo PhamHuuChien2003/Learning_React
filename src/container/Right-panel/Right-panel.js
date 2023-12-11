@@ -15,13 +15,13 @@ export default function RightPanel() {
         <div class="right-panel">
           <div class="name-tags"><p>Sponsored</p></div>
           <SponsoredSection/>
-          {/* <hr class="line"/> */}
+          <hr class="line"/>
           <div class="name-tags"><p>Friend requests</p></div>
           <FriendRequests/>
-          {/* <hr class="line"></hr> */}
+          <hr class="line"/>
           <div class="name-tags"><p>Birthdays</p></div>
           <Birthdays/>
-          {/* <hr class="line"></hr> */}
+          <hr class="line"/>
           <div class="name-tags"><p>Contacts</p></div>
           <Friends/>
         </div>

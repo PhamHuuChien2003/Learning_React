@@ -18,9 +18,10 @@
 
 .nav-middle ul li {
     width:111.59px;
-    height:56px;
+    height:24px;
     padding: 16px 0px;
     margin-right:5px;  
+    align-items: center;
 }
 
 .nav-middle ul li:hover{

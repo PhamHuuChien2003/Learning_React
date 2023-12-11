@@ -1,5 +1,5 @@
 .right-panel{
-    width:343px;
+    width:311px;
     padding: 0px 0px 0px;
     position: sticky;
     top:60px;
@@ -8,10 +8,10 @@
     overflow-y: auto;
 }
 
-.name-tags{
+.name-tags {
     width:311.2px;
-    height:44px;
-    padding:20px 16px 4px 16px;
+    height:20px;
+    padding:20px 16px 4px;
     margin-bottom: 8px;
 
 }
@@ -21,7 +21,9 @@
     padding:0px 0px 1px;
     font-size: 17px;
     color:#65676B;
+    margin:0px;
 }
+
 
 hr.line{
     width: 311px;

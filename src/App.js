@@ -9,8 +9,8 @@ import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 
 
 import './App.css';
-import Nav from './Nav/Nav'
-import Container from './Container/Container'
+import Nav from './nav/nav'
+import Container from './container/container'
 // import RightPanel from './Container/Right-panel/Right-panel'
 
 

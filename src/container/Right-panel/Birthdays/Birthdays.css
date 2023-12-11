@@ -1,7 +1,7 @@
 .Birthdays{
     width:311.2px;
     height:70.97px;
-    padding: 8px 0px;
+    align-items: center;
 }
 .Birthdays .birthdaybutton{
     width:295.2px;

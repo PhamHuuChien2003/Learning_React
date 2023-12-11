@@ -1,6 +1,6 @@
 .Friend-requests{
     width:311.2px;
-    height:110px;
+    height:94px;
     margin:0px 8px;
     padding:8px;
     display: flex;
@@ -28,8 +28,9 @@
     flex-direction: column;
     width:252.428571px;
     height:164.1871px;
-    margin : -6px 0px;
-    padding:12px 0px;
+    margin : -10px 0px;
+    /* padding:12px 0px; */
+    padding-bottom:12px ;
 }
 .fr-rq-dc p{
     font-size: 15px;
@@ -46,6 +47,7 @@
     height:20.99px;
     padding: 1px 0px 0px;
     margin-left: 10px;
+    margin-top: -12px;
 }
 .fr-rq-dc-bot img{
     width:16px;
@@ -86,7 +88,7 @@
     width:100px;
     height:35px;
     background-color: #0866FF;
-    padding: 0px 12px;
+    /* padding: 0px 12px; */
     border-radius: 10px;
     cursor: pointer;
 }
@@ -96,8 +98,8 @@
     margin: 0px -3px;
     font-size: 15px;
     color:#FFFFFF;
-    margin-top:10px;
-    margin-left: 9px;
+    margin-top:7px;
+    margin-left: 15px;
     align-items: center;
 }
 .butt-2{
@@ -105,7 +107,7 @@
     height:35px;
     margin-left: 10px;;
     background-color: #E4E6EB;
-    padding: 0px 12px;
+    /* padding: 0px 12px; */
     border-radius: 10px;
     cursor: pointer;
 }
@@ -115,7 +117,7 @@
     margin: 0px -3px;
     font-size: 15px;
     color:#050505;
-    margin-top:10px;
-    margin-left: 15px;
+    margin-top:7px;
+    margin-left: 20px;
     align-items: center;
 }
