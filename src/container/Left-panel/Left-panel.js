@@ -1,18 +1,18 @@
-import "./Left-pannel.css"
-import { dataLeftpannel1 } from "./data-1-Left-pannel"
-import { dataLeftpannel2 } from "./data-2-Left-pannel"
+import "./Left-panel.css"
+import { dataLeftpanel1 } from "./data-1-Left-panel"
+import { dataLeftpanel2 } from "./data-2-Left-panel"
 
 export default function LeftPanel() {
-   const List_icon_Left_pannel_1 =  dataLeftpannel1.map(dataLeftpannel1 =>
+   const List_icon_Left_panel_1 =  dataLeftpanel1.map(dataLeftpanel1 =>
          <li>
-            <img src={dataLeftpannel1.src} alt={dataLeftpannel1.alt}></img>
-            <p>{dataLeftpannel1.name}</p>
+            <img src={dataLeftpanel1.src} alt={dataLeftpanel1.alt}></img>
+            <p>{dataLeftpanel1.name}</p>
          </li>
     )
-    const List_icon_Left_pannel_2 = dataLeftpannel2.map(dataLeftpannel2=>
+    const List_icon_Left_panel_2 = dataLeftpanel2.map(dataLeftpanel2=>
         <li>
-           <img src={dataLeftpannel2.src} alt={dataLeftpannel2.alt}></img>
-           <p>{dataLeftpannel2.name}</p>
+           <img src={dataLeftpanel2.src} alt={dataLeftpanel2.alt}></img>
+           <p>{dataLeftpanel2.name}</p>
         </li>
     )
     return(
@@ -25,7 +25,7 @@ export default function LeftPanel() {
                     <p>Phạm Hữu Chiến</p>
                 </li>
             </ul>
-            <ul>{List_icon_Left_pannel_1}</ul>
+            <ul>{List_icon_Left_panel_1}</ul>
             <ul>
                 <li>
                     <div class="down-chn"><a href="#"><i class="fa-solid fa-chevron-down"></i></a></div>
@@ -35,7 +35,7 @@ export default function LeftPanel() {
                     <p>Your shotcut</p>
                 </li>
             </ul>
-            <ul>{List_icon_Left_pannel_2}</ul>
+            <ul>{List_icon_Left_panel_2}</ul>
             <ul>
                 <li>
                     <div class="down-chn"><a href="#"><i class="fa-solid fa-chevron-down"></i></a></div>

@@ -1,0 +1,52 @@
+
+.friends-section{
+    width:311.2px;
+    padding: 8px 0px;
+}
+.friends-section .friend{
+    width:311.2;
+    height:52px;
+    padding: 0px 16px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.friends-section .friend .avt-person-left-panel{
+    display: flex;
+}
+.friends-section .friend .avt-person-left-panel img{
+    height:36px;
+    width:36px;
+    border-radius: 50px;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.friends-section .friend .name{
+    cursor:pointer;
+    text-decoration-thickness: 2px;
+    font-size:15px;
+    color:#050505;
+    font-family:Arial, Helvetica, sans-serif ;
+    align-items: center;
+    margin-left: 10px;
+}
+.friends-section .friend .name:hover{
+    text-decoration: underline;
+}
+.dot-bl{
+    position:absolute;
+    z-index: 2;
+    background-color: #21cc6b;
+    border:#F0F2F5 2px solid;
+    width:10px;
+    height:10px;
+    border-radius:50px;
+    margin-top: 26px;
+    margin-left: 26px;
+}
+.friend:hover{
+    background: #ddd;
+}

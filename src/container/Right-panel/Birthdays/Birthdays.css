@@ -1,0 +1,33 @@
+.Birthdays{
+    width:311.2px;
+    height:70.97px;
+    padding: 8px 0px;
+}
+.Birthdays .birthdaybutton{
+    width:295.2px;
+    height: 54.98px;
+    padding: 0px 8px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    cursor: pointer;
+}
+.Birthdays .birthdaybutton .obj{
+    width: 36px;
+    height: 36px;
+}
+.Birthdays .birthdaybutton .obj img{
+    width: 36px;
+    height: 36px;
+}
+.Birthdays .birthdaybutton p{
+    font-size: 15px;
+    color: #050505;
+}
+.Birthdays .birthdaybutton p>b:hover{
+    text-decoration: underline;
+}
+.birthdaybutton:hover{
+    background: #ddd;
+    border-radius: 10px;
+}

@@ -1,0 +1,121 @@
+.Friend-requests{
+    width:311.2px;
+    height:110px;
+    margin:0px 8px;
+    padding:8px;
+    display: flex;
+}
+.Friend-requests .avt-fr-rq{
+    height:40px;
+    flex:1;
+    display: flex;
+    flex-direction: column;
+}
+.Friend-requests img{
+    width:40px;
+    height:40px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.Friend-requests .avt-fr-rq img{
+    width:16px;
+    height:16px;
+    border-radius: 50px;
+}
+.fr-rq-dc{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    width:252.428571px;
+    height:164.1871px;
+    margin : -6px 0px;
+    padding:12px 0px;
+}
+.fr-rq-dc p{
+    font-size: 15px;
+    color:#050505;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.fr-rq-dc p:hover{
+    text-decoration: underline;
+}
+.fr-rq-dc-bot{
+    display: flex;
+    width:170px;
+    height:20.99px;
+    padding: 1px 0px 0px;
+    margin-left: 10px;
+}
+.fr-rq-dc-bot img{
+    width:16px;
+    height:16px;
+    border-radius: 50px;
+}
+.fr-1{
+    width: 20px;
+    height: 20px;
+    border: 3px solid #fff ;
+    position:absolute;
+    z-index: 2;
+    border-radius: 50px;
+}
+.fr-2{
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff ;
+    position: relative;
+    z-index: 1;
+    margin-left:13px;
+    border-radius: 50px;
+}
+.fr-rq-dc-bot span{
+    height:17.6px;
+    font-size: 13px;
+    color: #65676B;
+}
+.fr-rq-dc-bot span:hover{
+    text-decoration: underline;
+}
+.button-below-fr-rq{
+    display:flex;
+    height:50px;
+    padding:4px;
+}
+.butt-1{
+    width:100px;
+    height:35px;
+    background-color: #0866FF;
+    padding: 0px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.butt-1 p{
+    width:81px;
+    height:12.56px;
+    margin: 0px -3px;
+    font-size: 15px;
+    color:#FFFFFF;
+    margin-top:10px;
+    margin-left: 9px;
+    align-items: center;
+}
+.butt-2{
+    width:100px;
+    height:35px;
+    margin-left: 10px;;
+    background-color: #E4E6EB;
+    padding: 0px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.butt-2 p{
+    width:81px;
+    height:12.56px;
+    margin: 0px -3px;
+    font-size: 15px;
+    color:#050505;
+    margin-top:10px;
+    margin-left: 15px;
+    align-items: center;
+}

@@ -1,0 +1,10 @@
+.middle-panel{
+    position: static;
+    width: 744px;
+    padding:0px 76.99px;
+    flex:1;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    overflow-y: auto;
+}

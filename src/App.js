@@ -9,15 +9,17 @@ import { faTwitter, faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 
 
 import './App.css';
-import LeftPanel from './Container/Left-pannel/Left-pannel'
 import Nav from './Nav/Nav'
+import Container from './Container/Container'
+// import RightPanel from './Container/Right-panel/Right-panel'
 
 
 function App() {
   return (
     <div className="App">
       <Nav/>
-      <LeftPanel/>
+      <Container/>
+      {/* <RightPanel/> */}
     </div>
   );
 }
