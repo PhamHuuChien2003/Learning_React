@@ -8,12 +8,11 @@
 
 .nav-right .profile {
     /* background: url("./icon/bell.svg"); */
-    height:30px;
-    width:30px;
+    height:40px;
+    width:40px;
     background-size: cover;
     border-radius: 50%;
     cursor: pointer;
-    scale: 1.2;
 }
 
 .nav-right a{
@@ -25,25 +24,26 @@
     background:#eee;
     display:flex;
     place-items: center;
+    align-items: center;
     margin-right: 10px;
     position: relative;
     z-index: 1;
 }
 .nav-right a > img{
-    font-size:20px;
-    width:20px;
-    height:20px;
+    font-size:18px;
+    width:18px;
+    height:18px;
     place-items: center;
-    margin-top:5px;
-    margin-left: 10px;
+    margin-top:3px;
+    margin-left: 11px;
 }
 .nav-dot-bl{
     position:absolute;
     z-index: 3;
     background-color: #e91c1c;
     border:#fff 2px solid;
-    width:20px;
-    height:20px;
+    width:18px;
+    height:18px;
     border-radius:50px;
     margin-top: -33px;
     margin-left: 25px;
@@ -52,7 +52,7 @@
     color:#fff;
     font-size: 13px;
     padding :0px 5px;
-    margin-top: 1px;
+    margin-top: 0px;
 }
 
 .nav-dot-bl-pf{
@@ -60,9 +60,9 @@
     z-index: 3;
     background-color: #cc2121;
     border:#fff 2px solid;
-    width:12px;
-    height:12px;
+    width:11px;
+    height:11px;
     border-radius:50px;
     margin-top: -2px;
-    margin-left: 16.5px;
+    margin-left: 25px;
 }

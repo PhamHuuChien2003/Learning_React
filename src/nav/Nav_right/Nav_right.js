@@ -17,7 +17,7 @@ export default function NavRight() {
                 <div class="nav-dot-bl"><p>1</p></div>
             </a>
             <span class="profile" style={{ backgroundImage: `url("./images/avt/selfpic.jpg")`}}>
-                <div class="nav-dot-bl-pf"><p>.</p></div>
+                <div class="nav-dot-bl-pf"></div>
             </span>
 
         </div>

@@ -18,7 +18,7 @@
 
 .nav-middle ul li {
     width:111.59px;
-    height:24px;
+    height:22px;
     padding: 16px 0px;
     margin-right:5px;  
     align-items: center;
@@ -74,6 +74,7 @@
     bottom:0;
     left:0;
     background:royalblue;
+    margin-bottom: -2px;
 }
 .nav-middle ul li a > img{
     font-size: 24px;
