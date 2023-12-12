@@ -1,0 +1,46 @@
+.story .avt-in-str-set img{
+    border-radius: 50%;
+    width: 40px;
+    height:40px;
+    overflow: hidden;
+    position:absolute;
+    z-index: 2;
+    top: 10px;
+    left:10px;
+    border:royalblue 4px solid;
+}
+.story .name{
+    position: absolute;
+    top: 220px;
+    left:10px;
+    z-index: 3;
+    padding : 5px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 12px;
+}
+.story{
+    box-shadow: 0 0 5px 5px #ddd;
+    background: #fff;
+    width: 140.8px;
+    height: 251px;
+    border-radius: 10px;
+    margin-right:8px;
+    overflow: hidden;
+    position: relative;
+}
+.story img{
+    border-radius: 10px;
+    width: 140.63px;
+    height:249.99px;
+    z-index: 1;
+    object-fit: cover;
+}
+
+.story:hover > img{
+    transform:scale(1.05);
+}
+.story > img{
+    height:100%;
+    transition:.3s ease-in;
+}

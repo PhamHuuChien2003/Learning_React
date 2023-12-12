@@ -1,0 +1,8 @@
+.story-section{
+    display: flex;
+    width:590px;
+    height:266px;
+    padding:8px 0px;
+    cursor: pointer;
+    margin-top: 8px;
+}
