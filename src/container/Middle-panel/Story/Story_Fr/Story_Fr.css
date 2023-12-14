@@ -1,3 +1,10 @@
+button{
+    position: absolute;
+    z-index: 2;
+}
+.btn1{
+    margin-left: 500px;
+}
 .story .avt-in-str-set img{
     border-radius: 50%;
     width: 40px;

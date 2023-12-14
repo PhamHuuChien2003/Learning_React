@@ -9,9 +9,9 @@ export default function Nav() {
 
     return(           
         <nav>
-            <NavLeft class="nav-left"></NavLeft> 
-            <NavMiddle class="nav-middle"></NavMiddle> 
-            <NavRight class="nav-right"></NavRight>
+            <NavLeft/>
+            <NavMiddle/>
+            <NavRight/>
         </nav>
     )
 }

@@ -17,5 +17,11 @@ export const DataStoryFr =[
       srcavtstr1:'./images/avt/3-avt.jpg',
       alt2:'3-avt',
       name:'Sam'
+},{
+      srcstr1:'./images/story/story4.jpg',
+      alt1:'str-4',
+      srcavtstr1:'./images/avt/4-avt-str.jpg',
+      alt2:'4-avt',
+      name:'Jane'
 }
 ]

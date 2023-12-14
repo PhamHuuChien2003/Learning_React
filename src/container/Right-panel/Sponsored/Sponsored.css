@@ -21,12 +21,12 @@
     height:111.68px;
     display: flex;
     cursor: pointer;
+    margin-top: 5px;
 }
 .sponsored .sponsored-sections .sponsored-sections-is img{
     border-radius: 10px;
     width:111.68px;
     height:111.68px;
-    
 }
 .sponsored .sponsored-sections .sponsored-sections-is .descri .descri-top{
     width:170.498px;

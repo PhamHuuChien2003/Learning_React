@@ -55,17 +55,17 @@
     border-radius: 50px;
 }
 .fr-1{
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     border: 3px solid #fff ;
     position:absolute;
     z-index: 2;
     border-radius: 50px;
 }
 .fr-2{
-    width: 20px;
-    height: 20px;
-    border: 2px solid #fff ;
+    width: 16px;
+    height: 16px;
+    border: 3px solid #fff ;
     position: relative;
     z-index: 1;
     margin-left:13px;

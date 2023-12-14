@@ -16,8 +16,8 @@ export const dataLeftpanel1 = [
     name:'Groups',
     alt:'Grs',
 },{
-    src:'./images/left_panel_img/group.png',
-    name:'Groups',
-    alt:'Grs',
+    src:'./images/left_panel_img/Watch.png',
+    name:'Video',
+    alt:'vids',
 }
 ]

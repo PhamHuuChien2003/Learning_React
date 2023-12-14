@@ -6,13 +6,13 @@ export default function LeftPanel() {
    const List_icon_Left_panel_1 =  dataLeftpanel1.map(dataLeftpanel1 =>
          <li>
             <img src={dataLeftpanel1.src} alt={dataLeftpanel1.alt}></img>
-            <p>{dataLeftpanel1.name}</p>
+            <p><b>{dataLeftpanel1.name}</b></p>
          </li>
     )
     const List_icon_Left_panel_2 = dataLeftpanel2.map(dataLeftpanel2=>
         <li>
            <img src={dataLeftpanel2.src} alt={dataLeftpanel2.alt}></img>
-           <p>{dataLeftpanel2.name}</p>
+           <p><b>{dataLeftpanel2.name}</b></p>
         </li>
     )
     return(
@@ -22,24 +22,25 @@ export default function LeftPanel() {
             <ul>
                 <li>
                     <span class="profile" style={{ backgroundImage: `url("./images/avt/selfpic.jpg")`}}></span>
-                    <p>Phạm Hữu Chiến</p>
+                    <p><b>Phạm Hữu Chiến</b></p>
                 </li>
             </ul>
             <ul>{List_icon_Left_panel_1}</ul>
             <ul>
                 <li>
                     <div class="down-chn"><a href="#"><i class="fa-solid fa-chevron-down"></i></a></div>
-                    <p>See more</p>
+                    <p><b>See more</b></p>
                 </li>
+                <hr class="line"></hr>
                 <li>  
-                    <p>Your shotcut</p>
+                    <div class="ur-sc"><p><b>Your shotcut</b></p></div>
                 </li>
             </ul>
             <ul>{List_icon_Left_panel_2}</ul>
             <ul>
                 <li>
                     <div class="down-chn"><a href="#"><i class="fa-solid fa-chevron-down"></i></a></div>
-                    <p>See more</p>
+                    <p><b>See more</b></p>
                 </li>
             </ul>
         </div>
