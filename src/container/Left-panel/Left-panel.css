@@ -93,7 +93,31 @@
     font-size:20px;
     place-items: center;
 }
+.left-panel .left-panel-but ul li button{
+    width:295px;
+    height:52px;
+    display: flex;
+    margin-top: 0px;
+    background: none;
+}
+.left-panel .left-panel-but ul li button .see-more{
+   display: flex;
+}
+.left-panel .left-panel-but ul li button .see-more a{
+    text-decoration: none;
+    color:#333;
+    height:28px;
+    width :28px;
+    border-radius: 50%;
+    background : #E4E6EB;
+    place-items:center;
+    margin-right: 10px;
 
+}
+.left-panel .left-panel-but ul li button .see-more a > i{
+    font-size:20px;
+    place-items: center;
+}
 .left-panel .links{
     padding:5px 1rem;
 }
@@ -123,7 +147,7 @@
 }
 
 hr.line{
-    width: 100px;
+    width: 285px;
     border: 0;
     height: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
