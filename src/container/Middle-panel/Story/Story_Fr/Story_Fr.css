@@ -1,9 +1,20 @@
 button{
     position: absolute;
+    width:48px;
+    height:48px;
+    border-radius: 50px;
+    background-color: #FFFFFF;
     z-index: 2;
+    margin-top: 100px;
+    align-items: center;
+    border:none;
 }
-.btn1{
-    margin-left: 500px;
+button > svg{
+    width:24px;
+    height:24px;
+}
+.btn1{ 
+    margin-left: 530px;
 }
 .story .avt-in-str-set img{
     border-radius: 50%;

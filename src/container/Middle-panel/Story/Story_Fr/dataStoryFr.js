@@ -23,5 +23,17 @@ export const DataStoryFr =[
       srcavtstr1:'./images/avt/4-avt-str.jpg',
       alt2:'4-avt',
       name:'Jane'
+},{
+      srcstr1:'./images/story/story5.jpg',
+      alt1:'str-5',
+      srcavtstr1:'./images/avt/5-avt.jpg',
+      alt2:'5-avt',
+      name:'Khanh'
+},{
+      srcstr1:'./images/story/story6.jpg',
+      alt1:'str-6',
+      srcavtstr1:'./images/avt/6-avt.jpg',
+      alt2:'6-avt',
+      name:'Linh Chi'
 }
 ]
