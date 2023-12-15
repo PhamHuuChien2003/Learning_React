@@ -78,7 +78,7 @@
     
 }
 
-.left-panel .left-panel-but ul li .see-more a{
+/* .left-panel .left-panel-but ul li .see-more a{
     text-decoration: none;
     color:#333;
     height:28px;
@@ -92,17 +92,22 @@
 .left-panel .left-panel-but ul li .see-more a > i{
     font-size:20px;
     place-items: center;
-}
+} */
 .left-panel .left-panel-but ul li button{
     width:295px;
     height:52px;
     display: flex;
     margin-top: 0px;
     background: none;
+    border: none;
+    align-items: center;
 }
 .left-panel .left-panel-but ul li button .see-more{
    display: flex;
 }
+.left-panel .left-panel-but ul li button .see-more .down-chn{
+    margin-top: 5px;
+ }
 .left-panel .left-panel-but ul li button .see-more a{
     text-decoration: none;
     color:#333;
@@ -117,6 +122,12 @@
 .left-panel .left-panel-but ul li button .see-more a > i{
     font-size:20px;
     place-items: center;
+}
+.left-panel .left-panel-but ul li button .see-more p {
+    margin-left: 10px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#313131; 
 }
 .left-panel .links{
     padding:5px 1rem;
