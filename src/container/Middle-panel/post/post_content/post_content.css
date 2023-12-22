@@ -1,0 +1,313 @@
+.post .post-content{
+    width:590px;
+
+}
+.post .post-content p{
+    height:19,99px;
+    color:#050505;
+    font-size:15px;
+    padding: 0px 17.165px;
+}
+.post .post-content .hashtag{
+    color: #0866FF;
+    margin-bottom: 10px;
+}
+.post-content img{
+    width:590px;
+    height:590px;
+}
+.post-content >video{
+    width:590px;
+    height:332px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.post-content .bg-ct p{
+    font-size: 18px;
+}
+
+.post-content .bg-ct .album-img {
+    height:482px;
+    width: 590px;
+    flex:1;
+    display: flex;
+    flex-direction: column;
+}
+.post-content .bg-ct .album-img .i2-img-ln-1{
+    display: flex;
+    height:300px;
+}
+.post-content .bg-ct .album-img .i2-img-ln-1 .img-1-album{
+    width:297px;
+    height:360px;
+    padding-right: 4px;
+}
+.post-content .bg-ct .album-img .i2-img-ln-1 .img-2-album{
+    width:293px;
+    height:360px;
+}
+.post-content .bg-ct .album-img .i2-img-ln-1 .img-1-album img{
+    width:293px;
+    height:360px;
+}
+.post-content .bg-ct .album-img .i2-img-ln-1 .img-2-album img{
+    width:293px;
+    height:360px;
+}
+
+
+.post-content .bg-ct .album-img .i3-img-ln-2{
+    display: flex;
+    height:184px;
+    padding-top: 4px;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.post-content .bg-ct .album-img .i3-img-ln-2 .img-3-album{
+    width: 198px;
+    height: 190px;
+    padding-right: 4px;
+    overflow: hidden;
+}
+.post-content .bg-ct .album-img .i3-img-ln-2 .img-4-album{
+    width: 198px;
+    height: 190px;
+    padding-right: 4px;
+    overflow: hidden;
+}
+.post-content .bg-ct .album-img .i3-img-ln-2 .img-5-album{
+    width: 194px;
+    height: 190px;
+    overflow: hidden;
+}
+.post-content .bg-ct .album-img .i3-img-ln-2 .img-3-album img{
+    width: 194px;
+    height: 234px;
+    overflow: hidden;
+}
+.post-content .bg-ct .album-img .i3-img-ln-2 .img-4-album img{
+    width: 194px;
+    height: 234px;
+    overflow: hidden;
+}
+.post-content .bg-ct .album-img .i3-img-ln-2 .img-5-album img{
+    width: 194px;
+    height: 234px;
+    overflow: hidden;
+}
+
+.post-content .bg-ct .album-img .i3-img-ln-2 .blur-more-img{
+    position: absolute;
+    z-index: 2;
+    width:194px;
+    height:190px;
+    background-color: #65676B;
+    opacity: 0.8;
+    margin-left: 396px;
+    cursor: pointer;
+}
+.post-content .bg-ct .album-img .i3-img-ln-2 .blur-more-img p{
+    font-size: 30px;
+    color: white;
+    position: absolute;
+    z-index: 3;
+    opacity: 1;
+    align-items: center;
+    margin-left: 54.4px;
+    margin-top: 79.8px;
+}
+.post-content .Vote-sections{
+    width: 590px;
+    height:403.95px;
+    padding:12px;
+    flex:1;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-content .Vote-sections ul{
+    list-style-type: none;
+}
+.post-content .Vote-sections ul li{
+    width: 566px;
+    height:65.6px;
+    padding-bottom: 8px;
+    display: flex;
+}
+.post-content .Vote-sections ul li .vote{
+    display: flex;
+    width: 566px;
+    height:56px;
+    padding: 8px 0px;
+    border:#d6d6d6 1px solid;
+    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+}
+.post-content .Vote-sections ul li .vote .percent-voted-1{
+    position: absolute;
+    z-index: 3;
+    width:79.24px;
+    height:55px;
+    background-color: #E7F3FF;
+    margin-top: -8px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.post-content .Vote-sections ul li .vote .percent-voted-2{
+    position: absolute;
+    z-index: 3;
+    width:147.16px;
+    height:55px;
+    background-color: #E7F3FF;
+    margin-top: -8px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.post-content .Vote-sections ul li .vote .percent-voted-3{
+    position: absolute;
+    z-index: 3;
+    width:16.98px;
+    height:55px;
+    background-color: #E7F3FF;
+    margin-top: -8px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.post-content .Vote-sections ul li .vote .percent-voted-4{
+    position: absolute;
+    z-index: 3;
+    width:16.98px;
+    height:55px;
+    background-color: #E7F3FF;
+    margin-top: -8px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.post-content .Vote-sections ul li .vote .percent-voted-5{
+    position: absolute;
+    z-index: 3;
+    width:181.12px;
+    height:55px;
+    background-color: #E7F3FF;
+    margin-top: -8px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.post-content .Vote-sections ul li .vote .square-choose{
+    position: absolute;
+    align-items: center;
+    width:36px;
+    height:40px;
+    padding-left: 12px;
+    z-index: 4;
+}
+.post-content .Vote-sections ul li .vote .square-choose .setting-check-mark{
+    display: block;
+    cursor: pointer;
+    width:24px;
+    height:24px;
+    margin:8px 0px;
+    z-index: 5;
+    border-radius: 5px;
+}
+.post-content .Vote-sections ul li .vote .square-choose .setting-check-mark input{
+    width: 24px;
+    height:24px;
+}
+.post-content .Vote-sections ul li .vote .name-1st-choice{
+    position: absolute;
+    z-index: 4;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 60px;
+}
+.post-content .Vote-sections ul li .vote .name-2nd-choice{
+    position: absolute;
+    z-index: 4;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 60px;
+}
+.post-content .Vote-sections ul li .vote .name-3rd-choice{
+    position: absolute;
+    z-index: 4;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 60px;
+}
+.post-content .Vote-sections ul li .vote .name-4th-choice{
+    position: absolute;
+    z-index: 4;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 60px;
+}
+.post-content .Vote-sections ul li .vote .name-5th-choice{
+    position: absolute;
+    z-index: 4;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 60px;
+}
+.added-by{
+    color:#65676B;
+    font-size: 13px;
+    padding: 0px 0px 1px;
+}
+.added-by > b{
+    color: #0064D1;
+}
+.added-by > b:hover{
+    text-decoration: underline;
+}
+.name-choice{
+    color: #050505;
+    font-size: 15px;
+}
+.name-choice-1{
+    margin-top: 10px;
+}
+.result-percent-voted{
+    padding-left: 515px;
+    padding-top:10px;
+    justify-content: right;
+    align-items: center;
+}
+.result-percent-voted span{
+    color:#0064D1;
+    font-size: 15px;
+}
+.result-percent-voted i{
+    width:12px;
+    height:12px;
+    margin-bottom: -5px;
+}
+.see-all-voted{
+    width:565px;
+    height:36px;
+    background-color: #E4E6EB;
+    border-radius: 5px;
+    padding:0px 12px;
+    align-items: center;
+    cursor: pointer;
+}
+.see-all-voted:hover{
+    background-color: #d3d3d3;
+}
+
+
+.see-all-voted p{
+    color:#050505;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-left: 210px;;
+}

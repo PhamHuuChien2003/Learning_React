@@ -1,0 +1,97 @@
+.button-below-Post{
+    display:flex;
+    width:570px;
+    height:60px;
+    margin: -6px -2px;
+    padding: 4px;
+    align-items: center;
+}
+
+.button-below-post{
+    width:191.34px;
+    height:42px;
+    margin: -6px -2px;
+    padding: 0px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-top: 1px;
+    margin-bottom: 4px;
+}
+
+.button-below-post .i-fb{
+    width:28px;
+    height:32px;
+    padding:6px 4px;
+}
+
+.button-below-post >i{
+    width:20px;
+    height:20px;
+    color:#65676B;
+}
+
+.button-below-post span{
+    font-size:15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#65676B;
+    height:19.99px;
+    margin-left: 10px;
+    padding: 2.5px;
+    align-items: center;
+}
+.like-btn{
+    align-items: center;
+    display: flex;
+    margin-left: 35px;
+}
+.cmt-btn{
+    align-items: center;
+    display: flex;
+    margin-left: 25px;
+}
+.share-btn{
+    align-items: center;
+    display: flex;
+    margin-left: 45px;
+}
+.post .post-bot .button-below-post:hover{
+    background-color: #F0F2F5;
+    border-radius: 10px;
+}
+/* svg{
+    height:20px;
+    width:20px;
+} */
+.i-class1{
+    background-position:0 -774px;
+    background-size:26px 1572px;
+    width:20px;
+    height:20px;
+    background-repeat:no-repeat;
+    display:inline-block;
+    position: relative;
+}
+
+.i-class2{
+    background-position:0 -576px;
+    background-size:26px 1572px;
+    width:20px;
+    height:20px;
+    background-repeat:no-repeat;
+    display:inline-block;
+    position: relative;
+}
+
+
+.i-class3{
+    background-position:0 -928px;
+    background-size:26px 1572px;
+    width:20px;
+    height:20px;
+    background-repeat:no-repeat;
+    display:inline-block;
+    position: relative;
+}
+

@@ -1,0 +1,65 @@
+.post-bot .like-descrip{
+    width:570px;
+    height:42px;
+    margin-left:  16px;
+    padding:10px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.post-bot .like-descrip .like-descrip-left, .post-bot .like-descrip .like-descrip-right{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.post-bot .like-descrip .like-descrip-left:hover, .post-bot .like-descrip .like-descrip-right:hover{
+    text-decoration: underline;
+}
+.post-bot .like-descrip .like-descrip-left .img-1{
+    position: absolute;
+    z-index: 3;
+    margin-left: 10px;
+}
+.post-bot .like-descrip .like-descrip-left .img-1 img{
+    width:18px;
+    height:18px;
+    border: #fff 1px solid;
+    border-radius: 50px;
+    margin-left:-15px
+}
+
+.post-bot .like-descrip .like-descrip-left .img-2{
+    position: relative;
+    z-index: 2;
+    margin-left: 10px;
+}
+.post-bot .like-descrip .like-descrip-left .img-2 img{
+    width:18px;
+    height:18px;
+    border: #fff 1px solid;
+    border-radius: 50px;
+}
+.post-bot .like-descrip .like-descrip-left p{
+    font-size: 15px;
+    color : #65676B;
+    padding: 0px 0px 0px 4px;
+}
+.post-bot .like-descrip .like-descrip-right{
+    color : #65676B;
+    padding: 4px;
+    margin-right: 10px;
+}
+.post-bot .like-descrip .like-descrip-right img{
+    width:16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    color:#65676B;
+}
+.iclass{
+    background-color: #65676B;
+    background: #65676B;
+}
+
+.post-bot .like-descrip .like-descrip-right p{
+    font-size: 15px;
+}

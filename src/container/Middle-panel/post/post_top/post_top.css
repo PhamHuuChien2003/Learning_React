@@ -1,0 +1,104 @@
+.post .post-top{
+    width:558px;
+    height:48px;
+    padding:12px 16px 0px;
+    display:flex;
+    align-items: center;
+    margin-bottom:12px;
+}
+.avt-person-post{
+    height:40px;
+    width:40px;
+    border-radius: 50%;
+    overflow:hidden;
+}
+.avt-person-post > img{
+    height:100%;
+    width:100%;
+    cursor:pointer;
+    object-fit: cover;
+}
+.post .post-top .post-info{
+    width:438px;
+    height:43.99px;
+    margin-left:15px;
+}
+.post .post-top .post-info .name{
+    height:20px;
+    cursor:pointer;
+    font-size:15px;
+    color:#050505;
+    font-family: Arial, Helvetica, sans-serif ;
+    margin-bottom: 0;
+}
+.post .post-top .post-info .name:hover{
+    text-decoration: underline;
+}
+
+
+
+
+
+
+.avt-gr-post{
+    position: relative;
+    z-index: 2;
+}
+.avt-gr-post img{
+    height:36px;
+    width:36px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: #65676B 0.5px solid;
+}
+.avt-person-gr-post{
+   
+    position: absolute;
+    z-index: 3;
+}
+.avt-person-gr-post img{
+    width:24px;
+    height:24px;
+    border:#fff 2px solid;
+    border-radius: 50px;
+    margin-top:16px;
+    margin-left:22px;
+}
+
+.post .post-top .post-info .name-gr{
+    margin-top: 2px;
+    height:20px;
+    margin-bottom: 1px;
+    cursor: pointer;
+
+}
+
+.post-info-bl{
+    display: flex;
+}
+.time{
+    height:20px;
+    cursor:pointer;
+    font-size:13px;
+    color:#65676B;
+    font-family: Arial, Helvetica, sans-serif ;
+    margin: 0;
+}
+.dot{
+    align-items: center;
+}
+.post .post-top .post-info .name-gr:hover{
+    text-decoration: underline;
+}
+
+.post .post-top .post-info .name-p-3{
+    height:20px;
+    cursor:pointer;
+    font-size:13px;
+    color:#65676B;
+    font-family: Arial, Helvetica, sans-serif ;
+    margin: 0;
+}
+.post .post-top .post-info .name-p-3:hover{
+    text-decoration: underline;
+}

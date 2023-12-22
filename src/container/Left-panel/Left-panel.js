@@ -11,9 +11,10 @@ export default function LeftPanel() {
     var List_left_panel11 = dataLeftpanel1.filter(dataLeftpanel1=>dataLeftpanel1.id<6);
     var List_left_panel12 = dataLeftpanel1.filter(dataLeftpanel1=>dataLeftpanel1.id<15);
 
-    const [list1, setList1] =useState([List_left_panel11]);
+    const [list1, setList1] =useState([...List_left_panel11]);
     let seemore1 = list1.length < 6;
     let seeless1=list1.length>5;
+    // setList1([...List_left_panel11]);
     function handleSeemore1() {
         if (seemore1) {setList1([...List_left_panel12])}
     };
@@ -33,9 +34,10 @@ export default function LeftPanel() {
     var List_left_panel22 = dataLeftpanel2.filter(dataLeftpanel2=> dataLeftpanel2.id<10);
 
     
-    const [list2, setList2] =useState([List_left_panel21]);
+    const [list2, setList2] =useState([...List_left_panel21]);
     let seemore2 = list2.length < 6;
     let seeless2=list2.length>5;
+    // list2=[...List_left_panel21];
     function handleSeemore2() {
         if (seemore2) {setList2([...List_left_panel22])}
     };
