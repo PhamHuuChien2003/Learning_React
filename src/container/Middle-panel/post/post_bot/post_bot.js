@@ -10,7 +10,6 @@ export default function PostBot(Botx) {
             <LikeDescription {...Botx} />
             <hr className="line"></hr>
             <ButtonBelow/>
-            <br/>
             <hr className="line"/>
             <br/>
         </div>

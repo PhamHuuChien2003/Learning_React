@@ -29,7 +29,6 @@ export default function Top(Topx) {
                 </div>
                 <div class="post-info">
                     <p class="name"><b>{Topx.name_p}</b></p>
-                    <span class="dot">.</span>
                     <span class="time">{Topx.time}</span>
                     <span class="dot">.</span>
                     <i class="fa-solid fa-earth-americas" style={{color: "#6f7d95"}}></i>

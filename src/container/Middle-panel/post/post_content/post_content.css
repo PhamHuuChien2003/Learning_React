@@ -129,6 +129,7 @@
 
 .post-content .Vote-sections ul{
     list-style-type: none;
+    padding:0;
 }
 .post-content .Vote-sections ul li{
     width: 566px;
@@ -140,7 +141,7 @@
     display: flex;
     width: 566px;
     height:56px;
-    padding: 8px 0px;
+    /* padding: 8px 0px; */
     border:#d6d6d6 1px solid;
     border-radius: 10px;
     position: relative;
@@ -153,7 +154,7 @@
     width:79.24px;
     height:55px;
     background-color: #E7F3FF;
-    margin-top: -8px;
+    /* margin-top: -8px; */
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
 }
@@ -163,7 +164,7 @@
     width:147.16px;
     height:55px;
     background-color: #E7F3FF;
-    margin-top: -8px;
+    /* margin-top: -8px; */
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
 }
@@ -173,7 +174,7 @@
     width:16.98px;
     height:55px;
     background-color: #E7F3FF;
-    margin-top: -8px;
+    /* margin-top: -8px; */
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
 }
@@ -183,7 +184,7 @@
     width:16.98px;
     height:55px;
     background-color: #E7F3FF;
-    margin-top: -8px;
+    /* margin-top: -8px; */
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
 }
@@ -193,7 +194,7 @@
     width:181.12px;
     height:55px;
     background-color: #E7F3FF;
-    margin-top: -8px;
+    /* margin-top: -8px; */
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
 }
@@ -310,4 +311,7 @@
     font-size: 15px;
     margin-top: 10px;
     margin-left: 210px;;
+}
+.cap{
+    margin:0;
 }

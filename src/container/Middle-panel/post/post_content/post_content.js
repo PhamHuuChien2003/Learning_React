@@ -26,7 +26,7 @@ export default function Content(Topx) {
 
     const Vids=()=>(
         <div class="post-content">
-                <p>{Topx.cap}</p>
+                <p class="cap">{Topx.cap}</p>
                 <video  width="480" height="270" controls autoplay>
                     <source src={Topx.src_vid} type="video/mp4"/>
                 </video>  
@@ -36,7 +36,7 @@ export default function Content(Topx) {
     const Album=()=>(
         <div class="post-content">
                 <div class="bg-ct">
-                    <p>{Topx.cap}</p>
+                    <p class="cap">{Topx.cap}</p>
                     <p class="hashtag">{Topx.hastag}</p>
                     <div class="album-img">
                         <div class="i2-img-ln-1">
@@ -72,7 +72,7 @@ export default function Content(Topx) {
     const Vote=()=>(
 
         <div class="post-content">
-                <p>{Topx.cap}</p>
+                <p class="cap">{Topx.cap}</p>
                 <div class="Vote-sections">
                     <ul>
                         <li>
@@ -165,11 +165,14 @@ export default function Content(Topx) {
 
                             </div>
                         </li>
+                        <li>
+                            <div class="see-all-voted">
+                                <p>See all (20)</p>
+                            </div>
+                        </li>
                     </ul>
 
-                    <div class="see-all-voted">
-                        <p>See all (20)</p>
-                    </div>
+                    
                 </div>
             </div>
     );

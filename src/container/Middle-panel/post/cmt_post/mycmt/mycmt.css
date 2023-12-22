@@ -1,0 +1,80 @@
+.cmt-bl-post .my-cmt-section{
+    height:36.1px;
+    padding: 0px 16px;
+    display:flex;
+    /* justify-content: space-between; */
+    margin-top: 6px;
+}
+
+.cmt-bl-post .my-cmt-section .my-avt-in-cmt{
+    width:32px;
+    height:32px;
+    display:flex;
+}
+.cmt-bl-post .my-cmt-section .my-avt-in-cmt img{
+    width:32px;
+    height:32px;
+    border-radius: 50px;
+    position: relative;
+    z-index: 99;
+}
+.cmt-bl-post .my-cmt-section .my-avt-in-cmt .chevron-down{
+    width: 20px;
+    height:20px;
+    padding: 4px;
+    position: absolute;
+    z-index: 100;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+.cmt-bl-post .my-cmt-section .my-avt-in-cmt .chevron-down .chevron-down-svg{
+    width: 12px;
+    height:12px;
+    background-color: #cbcdce;
+    border-radius: 50px;
+}
+.cmt-bl-post .my-cmt-section .input-cmt{
+    display: flex;
+    background-color: #F0F2F5;
+    border-radius: 25px;
+    margin-left: 6px;
+}
+.cmt-bl-post .my-cmt-section .input-cmt input{
+    width:384px;
+    height:36.1px;
+    padding:8px 12px;
+    outline: none;
+    border:none;
+    background-color: #F0F2F5;
+    border-radius: 25px;
+}
+.cmt-bl-post .my-cmt-section .input-cmt .cmt-icon-butt{
+    width:140px;
+    height:36px;
+    display: flex;
+    margin-right: 10px;
+}
+.cmt-bl-post .my-cmt-section .input-cmt .cmt-icon-butt ul{
+    list-style-type: none;
+    width:140px;
+    height:36px;
+    margin: 0px 4px 0px 0px;
+    display: flex;
+    align-items: center;
+    margin-top: 1.75px;
+    cursor: pointer;
+}
+.cmt-bl-post .my-cmt-section .input-cmt .cmt-icon-butt ul li{
+    width:26px;
+    height:26px;
+    align-items: center;
+    margin-bottom: 3px;
+}
+.cmt-bl-post .my-cmt-section .input-cmt .cmt-icon-butt ul li>i{
+    margin-top: 5px;
+    margin-left: 5px;
+}
+.cmt-bl-post .my-cmt-section .input-cmt .cmt-icon-butt ul li:hover{
+    background-color: #aaaaaa;
+    border-radius: 50px;
+}
