@@ -40,8 +40,8 @@
     margin-left: 6px;
 }
 .cmt-bl-post .my-cmt-section .input-cmt input{
-    width:384px;
-    height:36.1px;
+    width:354px;
+    height:20.1px;
     padding:8px 12px;
     outline: none;
     border:none;
@@ -63,6 +63,7 @@
     align-items: center;
     margin-top: 1.75px;
     cursor: pointer;
+    padding:0;
 }
 .cmt-bl-post .my-cmt-section .input-cmt .cmt-icon-butt ul li{
     width:26px;
