@@ -3,17 +3,15 @@ import './mycmt.css'
 export default function MyCmt() {
 
     const style1 = {
-        'background-Image': 'url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yE/r/FA22Qd7z224.png&quot;)',
-        'background-position': '0px -1130px',
-        'background-size': '26px 1572px',
+        'background-position': '0px -1143.5px',
+        'background-size': '26px 1550px',
         'width': '16px',
         'height': '16px',
         'background-repeat': 'no-repeat', 
         'display': 'inline-block',
     }
     const style2 = {
-        'background-Image': 'url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yE/r/FA22Qd7z224.png&quot;)',
-        'background-position': '0px -1274px',
+        'background-position': '0px -1270px',
         'background-size': '26px 1572px',
         'width': '16px',
         'height': '16px',
@@ -21,8 +19,7 @@ export default function MyCmt() {
         'display': 'inline-block',
     }
     const style3 = {
-        'background-Image': 'url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yE/r/FA22Qd7z224.png&quot;)',
-        'background-position': '0px -1202px',
+        'background-position': '0px -1197px',
         'background-size': '26px 1572px',
         'width': '16px',
         'height': '16px',
@@ -30,17 +27,16 @@ export default function MyCmt() {
         'display': 'inline-block',
     }
     const style4 = {
-        'background-Image': 'url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yE/r/FA22Qd7z224.png&quot;)',
-        'background-position': '0px -1310px',
+        'background-position': '0px -1308px',
         'background-size': '26px 1572px',
         'width': '16px',
         'height': '16px',
         'background-repeat': 'no-repeat', 
         'display': 'inline-block',
     }
+    
     const style5= {
-        'backgroundImage': 'url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yE/r/FA22Qd7z224.png&quot;)',
-        'background-position': '0px -1454px',
+        'background-position': '0px -1437px',
         'background-size': '26px 1572px',
         'width': '16px',
         'height': '16px',
@@ -67,27 +63,27 @@ export default function MyCmt() {
                             <div class="cmt-icon-butt">
                                 <ul>
                                     <li>
-                                        <i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style={{backgroundImage: `url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yE/r/FA22Qd7z224.png&quot;)`,...style1}}></i>
+                                        <i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style={{backgroundImage: `url("./icon/fullicon.png")`,...style1}}></i>
                                     </li>
                                 </ul>
                                 <ul>
                                     <li>
-                                        <i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style={{backgroundImage: `url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yE/r/FA22Qd7z224.png&quot;)`,...style2}}></i>
+                                        <i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style={{backgroundImage: `url("./icon/fullicon.png")`,...style2}}></i>
                                     </li>
                                 </ul>
                                 <ul>
                                     <li>
-                                        <i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style={{backgroundImage: `url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yE/r/FA22Qd7z224.png&quot;)`,...style3}}></i>
+                                        <i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style={{backgroundImage: `url("./icon/fullicon.png")`,...style3}}></i>
                                     </li>
                                 </ul>
                                 <ul>
                                     <li>
-                                        <i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style={{backgroundImage: `url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yE/r/FA22Qd7z224.png&quot;)`,...style4}}></i>
+                                        <i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style={{backgroundImage: `url("./icon/fullicon.png")`,...style4}}></i>
                                     </li>
                                 </ul>
                                 <ul>
                                     <li>
-                                        <i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style={{backgroundImage: `url(&quot;https://static.xx.fbcdn.net/rsrc.php/v3/yE/r/FA22Qd7z224.png&quot;)`,...style5}}></i>
+                                        <i data-visualcompletion="css-img" class="x1b0d499 x1d69dk1" style={{backgroundImage: `url("./icon/fullicon.png")`,...style5}}></i>
                                     </li>
                                 </ul>
                             </div>
