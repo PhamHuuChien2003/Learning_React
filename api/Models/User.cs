@@ -11,5 +11,7 @@ namespace api.Models
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public int Age { get; set; }
+        public List<RelationshipMember> RelationshipMembers { get; set; } = new List<RelationshipMember>();
+        public List<Post> Posts { get; set; } = new List<Post>();
     }
 }
