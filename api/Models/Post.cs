@@ -12,5 +12,8 @@ namespace api.Models
         public DateTime Posttime { get; set; }=DateTime.Now;
         public int? UserId { get; set; }
         public User? User { get; set; }
+        public List<CommentPost> CommentPosts { get; set; } = new List<CommentPost>();
+        public List<ReactPost> ReactPosts { get; set; } = new List<ReactPost>();
+        
     }
 }
