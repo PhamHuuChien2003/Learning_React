@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -20,7 +21,8 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var relationshipMember = _context.RelationshipMember.ToList();
+            var relationshipMember = _context.RelationshipMember.ToList()
+                .Select(s => s.ToRelationshipMemberDto());
 
             return Ok(relationshipMember);
         }
@@ -35,7 +37,7 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            return Ok(relationshipMember);
+            return Ok(relationshipMember.ToRelationshipMemberDto());
         }
     }
 }

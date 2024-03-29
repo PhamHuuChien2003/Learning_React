@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -20,7 +21,8 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var commentPost = _context.CommentPost.ToList();
+            var commentPost = _context.CommentPost.ToList()
+                .Select(s => s.ToCommentPostDto());
 
             return Ok(commentPost);
         }
@@ -35,7 +37,7 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            return Ok(commentPost);
+            return Ok(commentPost.ToCommentPostDto());
         }
     }
 }

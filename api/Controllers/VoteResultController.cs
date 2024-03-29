@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -20,7 +21,8 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var  voteResult = _context. VoteResult.ToList();
+            var  voteResult = _context. VoteResult.ToList()
+                .Select(s => s.ToVoteResultDto());
 
             return Ok( voteResult);
         }
@@ -35,7 +37,7 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            return Ok( voteResult);
+            return Ok( voteResult.ToVoteResultDto());
         }
     }
 }

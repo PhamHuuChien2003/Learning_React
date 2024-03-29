@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -20,7 +21,8 @@ namespace api.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var postDetailSGPicWithCaption = _context.PostDetailSGPicWithCaption.ToList();
+            var postDetailSGPicWithCaption = _context.PostDetailSGPicWithCaption.ToList()
+                .Select(s => s.ToPostDetailSGPicWithCaptionDto());
 
             return Ok(postDetailSGPicWithCaption);
         }
@@ -35,7 +37,7 @@ namespace api.Controllers
                 return NotFound();
             }
 
-            return Ok(postDetailSGPicWithCaption);
+            return Ok(postDetailSGPicWithCaption.ToPostDetailSGPicWithCaptionDto());
         }
     }
 }
