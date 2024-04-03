@@ -26,5 +26,13 @@ namespace api.Mappers
                 CommentContent = commentContentWOLDto.CommentContent,
             };
         }
+        public static CommentContentWOL ToCommentContentWOLFromUpdateDTO(this UpdateCommentContentWOLRequestDto commentContentWOLUpdateDto)
+        {
+            return new CommentContentWOL
+            {
+                CommentPostID = commentContentWOLUpdateDto.CommentPostID,
+                CommentContent = commentContentWOLUpdateDto.CommentContent,
+            };
+        }
     }
 }

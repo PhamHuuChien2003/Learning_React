@@ -26,5 +26,13 @@ namespace api.Mappers
                 UserName = userAccountDto.UserName,
             };
         }
+        public static UserAccount ToUserAccountFromUpdateDTO(this UpdateUserAccountRequestDto userAccountUpdateDto)
+        {
+            return new UserAccount
+            {
+                UserID = userAccountUpdateDto.UserID,
+                UserName = userAccountUpdateDto.UserName,
+            };
+        }
     }
 }

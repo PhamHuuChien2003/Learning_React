@@ -30,5 +30,15 @@ namespace api.Mappers
                 VideoURL = postDetailVideoAndCaptionDto.VideoURL,
             };
         }
+        public static PostDetailVideoAndCaption ToPostDetailVideoAndCaptionFromUpdateDTO(this UpdatePostDetailVideoAndCaptionRequestDto postDetailVideoAndCaptionUpdateDto)
+        {
+            return new PostDetailVideoAndCaption
+            {
+                PostID = postDetailVideoAndCaptionUpdateDto.PostID,
+                Content = postDetailVideoAndCaptionUpdateDto.Content,
+                HashTag = postDetailVideoAndCaptionUpdateDto.HashTag,
+                VideoURL = postDetailVideoAndCaptionUpdateDto.VideoURL,
+            };
+        }
     }
 }

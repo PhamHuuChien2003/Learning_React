@@ -43,11 +43,23 @@ namespace api.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] CreateReactPostRequestDto createReactPostDto)
         {
-            var reactPostModel = createReactPostDto.ToReactPostDTO();
+            var reactPostModel = createReactPostDto.ToReactPostFromCreateDTO();
             _context.ReactPost.Add(reactPostModel);
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetById),new { id= reactPostModel.ReactPostID}, reactPostModel.ToReactPostDto());
-
+        }
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id,[FromBody] UpdateReactPostRequestDto updateReactPostDto)
+        {
+            var reactPostModel = _context.ReactPost.FirstOrDefault(x => x.ReactPostID == id);
+            if (reactPostModel == null) 
+            {
+                return NotFound();
+            }
+            reactPostModel = updateReactPostDto.ToReactPostFromUpdateDTO();
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new { id= reactPostModel.ReactPostID}, reactPostModel.ToReactPostDto());
         }
     }
 }

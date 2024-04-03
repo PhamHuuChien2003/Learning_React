@@ -19,13 +19,22 @@ namespace api.Mappers
                 UserID = reactPostModel.UserID,
             };
         }
-        public static ReactPost ToReactPostDTO(this CreateReactPostRequestDto reactPostDto)
+        public static ReactPost ToReactPostFromCreateDTO(this CreateReactPostRequestDto reactPostDto)
         {
             return new ReactPost
             {
                 PostID = reactPostDto.PostID,
                 Type = reactPostDto.Type,
                 UserID = reactPostDto.UserID,
+            };
+        }
+        public static ReactPost ToReactPostFromUpdateDTO(this UpdateReactPostRequestDto reactPostUpdateDto)
+        {
+            return new ReactPost
+            {
+                PostID = reactPostUpdateDto.PostID,
+                Type = reactPostUpdateDto.Type,
+                UserID = reactPostUpdateDto.UserID,
             };
         }
     }

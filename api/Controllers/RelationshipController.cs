@@ -48,5 +48,18 @@ namespace api.Controllers
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetById),new { id= relationshipModel.RelationshipId}, relationshipModel.ToRelationshipDto());
         }
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id,[FromBody] UpdateRelationshipRequestDto updateRelationshipDto)
+        {
+            var relationshipModel = _context.Relationship.FirstOrDefault(x => x.RelationshipId == id);
+            if (relationshipModel == null) 
+            {
+                return NotFound();
+            }
+            relationshipModel = updateRelationshipDto.ToRelationshipFromUpdateDTO();
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new { id= relationshipModel.RelationshipId}, relationshipModel.ToRelationshipDto());
+        }
     }
 }

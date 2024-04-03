@@ -48,5 +48,18 @@ namespace api.Controllers
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetById), new {id = commentContentWOLModel.CommentContentWOLID}, commentContentWOLModel.ToCommentContentWOLDto());
         }
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id,[FromBody] UpdateCommentContentWOLRequestDto updateCommentContentWOLDto)
+        {
+            var commentContentWOLModel = _context.CommentContentWOL.FirstOrDefault(x => x.CommentContentWOLID == id);
+            if (commentContentWOLModel == null) 
+            {
+                return NotFound();
+            }
+            commentContentWOLModel = updateCommentContentWOLDto.ToCommentContentWOLFromUpdateDTO();
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new { id= commentContentWOLModel.CommentContentWOLID}, commentContentWOLModel.ToCommentContentWOLDto());
+        }
     }
 }

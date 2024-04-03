@@ -49,5 +49,18 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById),new{id=postDetailVoteModel.PostDetailVoteID},postDetailVoteModel.ToPostDetailVoteDto());
             
         }
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id,[FromBody] UpdatePostDetailVoteRequestDto updatePostDetailVoteDto)
+        {
+            var postDetailVoteModel = _context.PostDetailVote.FirstOrDefault(x => x.PostDetailVoteID == id);
+            if (postDetailVoteModel == null) 
+            {
+                return NotFound();
+            }
+            postDetailVoteModel = updatePostDetailVoteDto.ToPostDetailVoteFromUpdateDTO();
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new { id= postDetailVoteModel.PostDetailVoteID}, postDetailVoteModel.ToPostDetailVoteDto());
+        }
     }
 }

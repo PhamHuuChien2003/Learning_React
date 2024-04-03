@@ -31,5 +31,15 @@ namespace api.Mappers
                 AlbumURL = postDetailAlbumDto.AlbumURL,
             };
         }
+        public static PostDetailAlbum ToPostDetailAlbumFromUpdateDTO(this UpdatePostDetailAlbumRequestDto postDetailAlbumUpdateDto)
+        {
+            return new PostDetailAlbum
+            {
+                PostID = postDetailAlbumUpdateDto.PostID,
+                Content = postDetailAlbumUpdateDto.Content,
+                HashTag = postDetailAlbumUpdateDto.HashTag,
+                AlbumURL = postDetailAlbumUpdateDto.AlbumURL,
+            };
+        }
     }
 }

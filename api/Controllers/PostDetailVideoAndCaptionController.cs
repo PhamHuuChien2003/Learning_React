@@ -48,5 +48,18 @@ namespace api.Controllers
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetById), new{id=postDetailVideoAndCaptionModel.PostDetailVideoAndCaptionID},postDetailVideoAndCaptionModel.ToPostDetailVideoAndCaptionDto());
         }
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id,[FromBody] UpdatePostDetailVideoAndCaptionRequestDto updatePostDetailVideoAndCaptionDto)
+        {
+            var postDetailVideoAndCaptionModel = _context.PostDetailVideoAndCaption.FirstOrDefault(x => x.PostDetailVideoAndCaptionID == id);
+            if (postDetailVideoAndCaptionModel == null) 
+            {
+                return NotFound();
+            }
+            postDetailVideoAndCaptionModel = updatePostDetailVideoAndCaptionDto.ToPostDetailVideoAndCaptionFromUpdateDTO();
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new { id= postDetailVideoAndCaptionModel.PostDetailVideoAndCaptionID}, postDetailVideoAndCaptionModel.ToPostDetailVideoAndCaptionDto());
+        }
     }
 }

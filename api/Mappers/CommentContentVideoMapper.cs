@@ -28,5 +28,14 @@ namespace api.Mappers
                 VideoURL = commentContentVideoDto.VideoURL,
             };
         }
+        public static CommentContentVideo ToCommentContentVideoFromUpdateDTO(this UpdateCommentContentVideoRequestDto commentContentVideoUpdateDto)
+        {
+            return new CommentContentVideo
+            {
+                CommentPostID = commentContentVideoUpdateDto.CommentPostID,
+                CommentContent = commentContentVideoUpdateDto.CommentContent,
+                VideoURL = commentContentVideoUpdateDto.VideoURL,
+            };
+        }
     }
 }

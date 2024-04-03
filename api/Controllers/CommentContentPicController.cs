@@ -49,5 +49,18 @@ namespace api.Controllers
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetById),new { id= commentContentPicModel.CommentContentPicID}, commentContentPicModel.ToCommentContentPicDto());
         }
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id,[FromBody] UpdateCommentContentPicRequestDto updateCommentContentPicDto)
+        {
+            var commentContentPicModel = _context.CommentContentPic.FirstOrDefault(x => x.CommentContentPicID == id);
+            if (commentContentPicModel == null) 
+            {
+                return NotFound();
+            }
+            commentContentPicModel = updateCommentContentPicDto.ToCommentContentPicFromUpdateDTO();
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new { id= commentContentPicModel.CommentContentPicID}, commentContentPicModel.ToCommentContentPicDto());
+        }
     }
 }

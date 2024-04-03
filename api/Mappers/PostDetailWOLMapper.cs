@@ -19,13 +19,22 @@ namespace api.Mappers
                 HashTag = postDetailWOLModle.HashTag,
             };
         }
-        public static PostDetailWOL ToPostDetailWOLDTO(this CreatePostDetailWOLRequestDto postDetailWOLDto)
+        public static PostDetailWOL ToPostDetailWOLFromCreateDTO(this CreatePostDetailWOLRequestDto postDetailWOLDto)
         {
             return new PostDetailWOL
             {
                 PostID = postDetailWOLDto.PostID,
                 Content = postDetailWOLDto.Content,
                 HashTag = postDetailWOLDto.HashTag,
+            };
+        }
+        public static PostDetailWOL ToPostDetailWOLFromUpdateDTO(this UpdatePostDetailWOLRequestDto postDetailWOLUpdateDto)
+        {
+            return new PostDetailWOL
+            {
+                PostID = postDetailWOLUpdateDto.PostID,
+                Content = postDetailWOLUpdateDto.Content,
+                HashTag = postDetailWOLUpdateDto.HashTag,
             };
         }
     }

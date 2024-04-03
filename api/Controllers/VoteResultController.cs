@@ -48,5 +48,18 @@ namespace api.Controllers
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetById),new { id= voteResultModel.VoteResultID}, voteResultModel.ToVoteResultDto());
         }
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id,[FromBody] UpdateVoteResultRequestDto updateVoteResultDto)
+        {
+            var voteResultModel = _context.VoteResult.FirstOrDefault(x => x.VoteResultID == id);
+            if (voteResultModel == null) 
+            {
+                return NotFound();
+            }
+            voteResultModel = updateVoteResultDto.ToVoteResultFromUpdateDTO();
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new { id= voteResultModel.VoteResultID}, voteResultModel.ToVoteResultDto());
+        }
     }
 }

@@ -28,5 +28,14 @@ namespace api.Mappers
                 HashTag = postDetailVoteDto.HashTag,
             };
         }
+        public static PostDetailVote ToPostDetailVoteFromUpdateDTO(this UpdatePostDetailVoteRequestDto postDetailVoteUpdateDto)
+        {
+            return new PostDetailVote
+            {
+                PostID = postDetailVoteUpdateDto.PostID,
+                Content = postDetailVoteUpdateDto.Content,
+                HashTag = postDetailVoteUpdateDto.HashTag,
+            };
+        }
     }
 }

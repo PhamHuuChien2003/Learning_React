@@ -48,5 +48,18 @@ namespace api.Controllers
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetById),new { id= postDetailAlbumModel.PostDetailAlbumID}, postDetailAlbumModel.ToPostDetailAlbumDto());
         }
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id,[FromBody] UpdatePostDetailAlbumRequestDto updatePostDetailAlbumDto)
+        {
+            var postDetailAlbumModel = _context.PostDetailAlbum.FirstOrDefault(x => x.PostDetailAlbumID == id);
+            if (postDetailAlbumModel == null) 
+            {
+                return NotFound();
+            }
+            postDetailAlbumModel = updatePostDetailAlbumDto.ToPostDetailAlbumFromUpdateDTO();
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new { id= postDetailAlbumModel.PostDetailAlbumID}, postDetailAlbumModel.ToPostDetailAlbumDto());
+        }
     }
 }

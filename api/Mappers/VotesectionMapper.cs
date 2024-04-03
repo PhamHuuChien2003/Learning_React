@@ -28,5 +28,14 @@ namespace api.Mappers
                 UserID = createVoteSectionDto.UserID,
             };
         }
+        public static Votesection ToVoteSectionFromUpdateDTO(this UpdateVoteSectionRequestDto createVoteSectionUpdateDto)
+        {
+            return new Votesection
+            {
+                PostDetailVoteID = createVoteSectionUpdateDto.PostDetailVoteID,
+                VoteName = createVoteSectionUpdateDto.VoteName,
+                UserID = createVoteSectionUpdateDto.UserID,
+            };
+        }
     }
 }

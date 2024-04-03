@@ -26,5 +26,13 @@ namespace api.Mappers
                 Type = createRelationshipDto.Type,
             };
         }
+        public static Relationship ToRelationshipFromUpdateDTO(this UpdateRelationshipRequestDto createRelationshipUpdateDto)
+        {
+            return new Relationship
+            {
+                StartTime = createRelationshipUpdateDto.StartTime,
+                Type = createRelationshipUpdateDto.Type,
+            };
+        }
     }
 }

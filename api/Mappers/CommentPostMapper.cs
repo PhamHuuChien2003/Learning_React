@@ -28,5 +28,14 @@ namespace api.Mappers
                 UserID = commentPostDto.UserID,
             };
         }
+        public static CommentPost ToCommentPostFromUpdateDTO(this UpdateCommentPostRequestDto commentPostUpdateDto)
+        {
+            return new CommentPost
+            {
+                PostId = commentPostUpdateDto.PostId,
+                Type = commentPostUpdateDto.Type,
+                UserID = commentPostUpdateDto.UserID,
+            };
+        }
     }
 }

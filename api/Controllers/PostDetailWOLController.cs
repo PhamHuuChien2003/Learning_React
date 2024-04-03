@@ -43,11 +43,24 @@ namespace api.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] CreatePostDetailWOLRequestDto createPostDetailWOLDto)
         {
-            var postDetailWOLModel = createPostDetailWOLDto.ToPostDetailWOLDTO();
+            var postDetailWOLModel = createPostDetailWOLDto.ToPostDetailWOLFromCreateDTO();
             _context.PostDetailWOL.Add(postDetailWOLModel);
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetById), new {id=postDetailWOLModel.PostDetailWOLID}, postDetailWOLModel.ToPostDetailWOLDto());
 
+        }
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id,[FromBody] UpdatePostDetailWOLRequestDto updatePostDetailWOLDto)
+        {
+            var postDetailWOLModel = _context.PostDetailWOL.FirstOrDefault(x => x.PostDetailWOLID == id);
+            if (postDetailWOLModel == null) 
+            {
+                return NotFound();
+            }
+            postDetailWOLModel = updatePostDetailWOLDto.ToPostDetailWOLFromUpdateDTO();
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new { id= postDetailWOLModel.PostDetailWOLID}, postDetailWOLModel.ToPostDetailWOLDto());
         }
     }
 }

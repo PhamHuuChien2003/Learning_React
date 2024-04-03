@@ -18,12 +18,20 @@ namespace api.Mappers
                 RelationshipId = relationshipMemberModel.RelationshipId,
             };
         }
-        public static RelationshipMember ToRelationshipMemberFromDTO(this CreateRelationshipMemberRequestDto relationshipMemberDto)
+        public static RelationshipMember ToRelationshipMemberFromCreateDTO(this CreateRelationshipMemberRequestDto relationshipMemberDto)
         {
             return new RelationshipMember
             {
                 UserId = relationshipMemberDto.UserId,
                 RelationshipId = relationshipMemberDto.RelationshipId,
+            };
+        }
+        public static RelationshipMember ToRelationshipMemberFromUpdateDTO(this UpdateRelationshipMemberRequestDto relationshipMemberUpdateDto)
+        {
+            return new RelationshipMember
+            {
+                UserId = relationshipMemberUpdateDto.UserId,
+                RelationshipId = relationshipMemberUpdateDto.RelationshipId,
             };
         }
     }

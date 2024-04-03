@@ -30,5 +30,15 @@ namespace api.Mappers
                 ImageURL = postDetailSGPicWithCaptionDto.ImageURL,
             };
         }
+        public static PostDetailSGPicWithCaption ToPostDetailSGPicWithCaptionFromUpdateDTO(this UpdatePostDetailSGPicWithCaptionRequestDto postDetailSGPicWithCaptionUpdateDto)
+        {
+            return new PostDetailSGPicWithCaption
+            {
+                PostID = postDetailSGPicWithCaptionUpdateDto.PostID,
+                Content = postDetailSGPicWithCaptionUpdateDto.Content,
+                HashTag = postDetailSGPicWithCaptionUpdateDto.HashTag,
+                ImageURL = postDetailSGPicWithCaptionUpdateDto.ImageURL,
+            };
+        }
     }
 }

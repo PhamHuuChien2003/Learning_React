@@ -48,5 +48,18 @@ namespace api.Controllers
             _context.SaveChanges();
              return CreatedAtAction(nameof(GetById),new { id= postDetailSGPicWithCaptionModel.PostDetailSGPicWithCaptionID}, postDetailSGPicWithCaptionModel.ToPostDetailSGPicWithCaptionDto());
         }
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Update([FromRoute] int id,[FromBody] UpdatePostDetailSGPicWithCaptionRequestDto updatePostDetailSGPicWithCaptionDto)
+        {
+            var postDetailSGPicWithCaptionModel = _context.PostDetailSGPicWithCaption.FirstOrDefault(x => x.PostDetailSGPicWithCaptionID == id);
+            if (postDetailSGPicWithCaptionModel == null) 
+            {
+                return NotFound();
+            }
+            postDetailSGPicWithCaptionModel = updatePostDetailSGPicWithCaptionDto.ToPostDetailSGPicWithCaptionFromUpdateDTO();
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new { id= postDetailSGPicWithCaptionModel.PostDetailSGPicWithCaptionID}, postDetailSGPicWithCaptionModel.ToPostDetailSGPicWithCaptionDto());
+        }
     }
 }

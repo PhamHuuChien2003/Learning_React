@@ -28,5 +28,14 @@ namespace api.Mappers
                 Age = userDto.Age,
             };
         }
+        public static User ToUserFromUpdateDTO(this UpdateUserRequestDto userUpdateDto)
+        {
+            return new User
+            {
+                FirstName = userUpdateDto.FirstName,
+                LastName = userUpdateDto.LastName,
+                Age = userUpdateDto.Age,
+            };
+        }
     }
 }
