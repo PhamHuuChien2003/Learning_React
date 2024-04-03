@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.DTOs.PostDetailVote;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,15 @@ namespace api.Controllers
             }
 
             return Ok(postDetailVote.ToPostDetailVoteDto());
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody] CreatePostDetailVoteRequestDto createPostDetailVoteDto)
+        {
+            var postDetailVoteModel = createPostDetailVoteDto.ToPostDetailVoteFromCreateDTO();
+            _context.PostDetailVote.Add(postDetailVoteModel);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new{id=postDetailVoteModel.PostDetailVoteID},postDetailVoteModel.ToPostDetailVoteDto());
+            
         }
     }
 }

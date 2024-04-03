@@ -18,5 +18,13 @@ namespace api.Mappers
                 Type = relationshipModel.Type,
             };
         }
+        public static Relationship ToRelationshipFromCreateDTO(this CreateRelationshipRequestDto createRelationshipDto)
+        {
+            return new Relationship
+            {
+                StartTime = createRelationshipDto.StartTime,
+                Type = createRelationshipDto.Type,
+            };
+        }
     }
 }

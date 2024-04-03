@@ -19,5 +19,14 @@ namespace api.Mappers
                 UserId = postModel.UserId
             };
         }
+        public static Post ToPostFromCreateDTO(this CreatePostRequestDto postDto)
+        {
+            return new Post
+            {
+                Type = postDto.Type,
+                Posttime = postDto.Posttime,
+                UserId = postDto.UserId
+            };
+        }
     }
 }

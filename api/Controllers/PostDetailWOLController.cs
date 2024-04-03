@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.DTOs.PostDetailWOL;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,15 @@ namespace api.Controllers
             }
 
             return Ok(postDetailWOL.ToPostDetailWOLDto());
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody] CreatePostDetailWOLRequestDto createPostDetailWOLDto)
+        {
+            var postDetailWOLModel = createPostDetailWOLDto.ToPostDetailWOLDTO();
+            _context.PostDetailWOL.Add(postDetailWOLModel);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById), new {id=postDetailWOLModel.PostDetailWOLID}, postDetailWOLModel.ToPostDetailWOLDto());
+
         }
     }
 }

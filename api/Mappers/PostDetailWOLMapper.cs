@@ -19,5 +19,14 @@ namespace api.Mappers
                 HashTag = postDetailWOLModle.HashTag,
             };
         }
+        public static PostDetailWOL ToPostDetailWOLDTO(this CreatePostDetailWOLRequestDto postDetailWOLDto)
+        {
+            return new PostDetailWOL
+            {
+                PostID = postDetailWOLDto.PostID,
+                Content = postDetailWOLDto.Content,
+                HashTag = postDetailWOLDto.HashTag,
+            };
+        }
     }
 }

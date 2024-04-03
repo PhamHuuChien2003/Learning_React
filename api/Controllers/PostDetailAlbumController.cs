@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.DTOs.PostDetailAlbum;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,14 @@ namespace api.Controllers
             }
 
             return Ok(postDetailAlbum.ToPostDetailAlbumDto());
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody] CreatePostDetailAlbumRequestDto createPostDetailAlbumDto)
+        {
+            var postDetailAlbumModel = createPostDetailAlbumDto.ToPostDetailAlbumFromCreateDTO();
+            _context.PostDetailAlbum.Add(postDetailAlbumModel);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new { id= postDetailAlbumModel.PostDetailAlbumID}, postDetailAlbumModel.ToPostDetailAlbumDto());
         }
     }
 }

@@ -19,7 +19,16 @@ namespace api.Mappers
                 HashTag = postDetailSGPicWithCaptionModel.HashTag,
                 ImageURL = postDetailSGPicWithCaptionModel.ImageURL,
             };
-        
+        }
+        public static PostDetailSGPicWithCaption ToPostDetailSGPicWithCaptionFromCreateDTO(this CreatePostDetailSGPicWithCaptionRequestDto postDetailSGPicWithCaptionDto)
+        {
+            return new PostDetailSGPicWithCaption
+            {
+                PostID = postDetailSGPicWithCaptionDto.PostID,
+                Content = postDetailSGPicWithCaptionDto.Content,
+                HashTag = postDetailSGPicWithCaptionDto.HashTag,
+                ImageURL = postDetailSGPicWithCaptionDto.ImageURL,
+            };
         }
     }
 }

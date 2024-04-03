@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.DTOs.PostDetailVideoAndCaption;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,14 @@ namespace api.Controllers
             }
 
             return Ok(postDetailVideoAndCaption.ToPostDetailVideoAndCaptionDto());
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody] CreatePostDetailVideoAndCaptionRequestDto createPostDetailVideoAndCaptionDto)
+        {
+            var postDetailVideoAndCaptionModel = createPostDetailVideoAndCaptionDto.ToPostDetailVideoAndCaptionFromCreateDTO();
+            _context.PostDetailVideoAndCaption.Add(postDetailVideoAndCaptionModel);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById), new{id=postDetailVideoAndCaptionModel.PostDetailVideoAndCaptionID},postDetailVideoAndCaptionModel.ToPostDetailVideoAndCaptionDto());
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.DTOs.Relationship;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,14 @@ namespace api.Controllers
             }
 
             return Ok(relationship.ToRelationshipDto());
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateRelationshipRequestDto createRelationshipDto)
+        {
+            var relationshipModel = createRelationshipDto.ToRelationshipFromCreateDTO();
+            _context.Relationship.Add(relationshipModel);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new { id= relationshipModel.RelationshipId}, relationshipModel.ToRelationshipDto());
         }
     }
 }

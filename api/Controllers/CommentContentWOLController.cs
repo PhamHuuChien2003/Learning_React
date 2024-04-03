@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.DTOs.CommentContentWOL;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,14 @@ namespace api.Controllers
             }
 
             return Ok(commentContentWOL.ToCommentContentWOLDto());
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateCommentContentWOLRequestDto createCommentContentWOLDto)
+        {
+            var commentContentWOLModel = createCommentContentWOLDto.ToCommentContentWOLFromCreateDTO();
+            _context.CommentContentWOL.Add(commentContentWOLModel);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById), new {id = commentContentWOLModel.CommentContentWOLID}, commentContentWOLModel.ToCommentContentWOLDto());
         }
     }
 }

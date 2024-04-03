@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.DTOs.Votesection;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,14 @@ namespace api.Controllers
             }
 
             return Ok( votesection.ToVotesectionDto());
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateVoteSectionRequestDto createVoteSectionDto)
+        {
+            var votesectionModel = createVoteSectionDto.ToVoteSectionFromCreateDTO();
+            _context.Votesection.Add(votesectionModel);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new { id= votesectionModel.VotesectionID}, votesectionModel.ToVotesectionDto());
         }
     }
 }

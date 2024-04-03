@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.DTOs.UserAccount;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,14 @@ namespace api.Controllers
             }
 
             return Ok(userAccount.ToUserAccountDto());
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateUserAccountRequestDto createUserAccountDto)
+        {
+            var userAccountModel = createUserAccountDto.ToUserAccountFromCreateDTO();
+            _context.UserAccount.Add(userAccountModel);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById),new { id= userAccountModel.ID}, userAccountModel.ToUserAccountDto());
         }
 
     }

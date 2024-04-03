@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.DTOs.CommentPost;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,14 @@ namespace api.Controllers
             }
 
             return Ok(commentPost.ToCommentPostDto());
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateCommentPostRequestDto createCommentPostDto)
+        {
+            var commentPostModel = createCommentPostDto.ToCommentPostFromCreateDTO();
+            _context.CommentPost.Add(commentPostModel);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById), new { id = commentPostModel.CommentPostID},commentPostModel.ToCommentPostDto());
         }
     }
 }

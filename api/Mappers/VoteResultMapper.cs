@@ -19,5 +19,14 @@ namespace api.Mappers
                 UserID = voteResultModel.UserID,
             };
         }
+        public static VoteResult ToVoteResultFromCreateDTO(this CreateVoteResultRequestDto voteResultDto)
+        {
+            return new VoteResult
+            {
+                PostDetailVoteID = voteResultDto.PostDetailVoteID,
+                VotesectionID = voteResultDto.VotesectionID,
+                UserID = voteResultDto.UserID,
+            };
+        }
     }
 }

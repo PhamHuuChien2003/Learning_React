@@ -19,5 +19,14 @@ namespace api.Mappers
                 Age = userModel.Age,
             };
         }
+        public static User ToUserFromCreateDTO(this CreateUserRequestDto userDto)
+        {
+            return new User
+            {
+                FirstName = userDto.FirstName,
+                LastName = userDto.LastName,
+                Age = userDto.Age,
+            };
+        }
     }
 }

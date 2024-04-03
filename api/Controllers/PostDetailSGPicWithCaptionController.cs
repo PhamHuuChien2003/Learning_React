@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.DTOs.PostDetailSGPicWithCaption;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,14 @@ namespace api.Controllers
             }
 
             return Ok(postDetailSGPicWithCaption.ToPostDetailSGPicWithCaptionDto());
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody] CreatePostDetailSGPicWithCaptionRequestDto createPostDetailSGPicWithCaptiontDto)
+        {
+            var postDetailSGPicWithCaptionModel = createPostDetailSGPicWithCaptiontDto.ToPostDetailSGPicWithCaptionFromCreateDTO();
+            _context.PostDetailSGPicWithCaption.Add(postDetailSGPicWithCaptionModel);
+            _context.SaveChanges();
+             return CreatedAtAction(nameof(GetById),new { id= postDetailSGPicWithCaptionModel.PostDetailSGPicWithCaptionID}, postDetailSGPicWithCaptionModel.ToPostDetailSGPicWithCaptionDto());
         }
     }
 }

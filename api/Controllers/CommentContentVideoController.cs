@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.DTOs.CommentContentVideo;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,14 @@ namespace api.Controllers
             }
 
             return Ok(commentContentVideo.ToCommentContentVideoDto());
+        }
+        [HttpPost]
+        public IActionResult Create([FromBody] CreateCommentContentVideoRequestDto createCommentContentVideoDto)
+        {
+            var commentContentVideoModel = createCommentContentVideoDto.ToCommentContentVideoFromCreateDTO();
+            _context.CommentContentVideo.Add(commentContentVideoModel);
+            _context.SaveChanges();
+            return CreatedAtAction(nameof(GetById), new { id=commentContentVideoModel.CommentContentVideoID},commentContentVideoModel.ToCommentContentVideoDto());
         }
     }
 }

@@ -19,5 +19,14 @@ namespace api.Mappers
                 ImageURL = commentContentPicModel.ImageURL,
             };
         }
+        public static CommentContentPic ToCommentContentPicFromCreateDTO(this CreateCommentContentPicRequestDto commentContentPicDto)
+        {
+            return new CommentContentPic
+            {
+                CommentPostID = commentContentPicDto.CommentPostID,
+                CommentContent = commentContentPicDto.CommentContent,
+                ImageURL = commentContentPicDto.ImageURL,
+            };
+        }
     }
 }

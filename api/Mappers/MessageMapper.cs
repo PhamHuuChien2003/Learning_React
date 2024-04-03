@@ -19,5 +19,14 @@ namespace api.Mappers
                 RelationshipMemberId = messageModel.RelationshipMemberId,
             };
         }
+        public static Message ToMessageFromCreateDTO(this CreateMessagerequestDto messageDto)
+        {
+            return new Message
+            {
+                Content = messageDto.Content,
+                SendMessageTime = messageDto.SendMessageTime,
+                RelationshipMemberId = messageDto.RelationshipMemberId,
+            };
+        }
     }
 }
