@@ -6,6 +6,7 @@ using api.Data;
 using api.DTOs.PostDetailWOL;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
@@ -20,18 +21,18 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var postDetailWOL = _context.PostDetailWOL.ToList()
-                .Select(s => s.ToPostDetailWOLDto());
+            var postDetailWOL =await _context.PostDetailWOL.ToListAsync();
+            var postDetailWOLDto = postDetailWOL.Select(s => s.ToPostDetailWOLDto());
 
-            return Ok(postDetailWOL);
+            return Ok(postDetailWOLDto);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var postDetailWOL = _context.PostDetailWOL.Find(id);
+            var postDetailWOL =await _context.PostDetailWOL.FindAsync(id);
 
             if (postDetailWOL == null)
             {
@@ -41,26 +42,42 @@ namespace api.Controllers
             return Ok(postDetailWOL.ToPostDetailWOLDto());
         }
         [HttpPost]
-        public IActionResult Create([FromBody] CreatePostDetailWOLRequestDto createPostDetailWOLDto)
+        public async Task<IActionResult> Create([FromBody] CreatePostDetailWOLRequestDto createPostDetailWOLDto)
         {
             var postDetailWOLModel = createPostDetailWOLDto.ToPostDetailWOLFromCreateDTO();
-            _context.PostDetailWOL.Add(postDetailWOLModel);
-            _context.SaveChanges();
+            await _context.PostDetailWOL.AddAsync(postDetailWOLModel);
+            await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById), new {id=postDetailWOLModel.PostDetailWOLID}, postDetailWOLModel.ToPostDetailWOLDto());
 
         }
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Update([FromRoute] int id,[FromBody] UpdatePostDetailWOLRequestDto updatePostDetailWOLDto)
+        public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdatePostDetailWOLRequestDto updatePostDetailWOLDto)
+        {
+            var postDetailWOLModel =await _context.PostDetailWOL.FirstOrDefaultAsync(x => x.PostDetailWOLID == id);
+            if (postDetailWOLModel == null) 
+            {
+                return NotFound();
+            }
+            var postDetailWOLUpdateModel = updatePostDetailWOLDto.ToPostDetailWOLFromUpdateDTO();
+            postDetailWOLModel.Content = postDetailWOLUpdateModel.Content;
+            postDetailWOLModel.HashTag = postDetailWOLUpdateModel.HashTag;
+            await _context.SaveChangesAsync();
+            return Ok(postDetailWOLModel.ToPostDetailWOLDto());
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Delete([FromRoute] int id)
         {
             var postDetailWOLModel = _context.PostDetailWOL.FirstOrDefault(x => x.PostDetailWOLID == id);
             if (postDetailWOLModel == null) 
             {
                 return NotFound();
             }
-            postDetailWOLModel = updatePostDetailWOLDto.ToPostDetailWOLFromUpdateDTO();
+            _context.PostDetailWOL.Remove(postDetailWOLModel);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetById),new { id= postDetailWOLModel.PostDetailWOLID}, postDetailWOLModel.ToPostDetailWOLDto());
+            return NoContent();
         }
     }
 }

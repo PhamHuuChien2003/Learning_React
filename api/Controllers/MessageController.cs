@@ -6,6 +6,7 @@ using api.Data;
 using api.DTOs.Message;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
@@ -20,18 +21,18 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var message = _context.Message.ToList()
-                .Select(s => s.ToMessageDto());
+            var message =await _context.Message.ToListAsync();
+            var messageDto =message.Select(s => s.ToMessageDto());
 
-            return Ok(message);
+            return Ok(messageDto);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var message = _context.Message.Find(id);
+            var message =await _context.Message.FindAsync(id);
 
             if (message == null)
             {
@@ -41,25 +42,39 @@ namespace api.Controllers
             return Ok(message.ToMessageDto());
         }
         [HttpPost]
-        public IActionResult Create([FromBody] CreateMessagerequestDto createMessageDto)
+        public async Task<IActionResult> Create([FromBody] CreateMessagerequestDto createMessageDto)
         {
             var messageModel = createMessageDto.ToMessageFromCreateDTO();
-            _context.Message.Add(messageModel);
-            _context.SaveChanges();
+            await _context.Message.AddAsync(messageModel);
+            await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById),new {id=messageModel.MessageId},messageModel.ToMessageDto());
         }
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Update([FromRoute] int id,[FromBody] UpdateMessageRequestDto updateMessageDto)
+        public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateMessageRequestDto updateMessageDto)
+        {
+            var messageModel =await _context.Message.FirstOrDefaultAsync(x => x.MessageId == id);
+            if (messageModel == null) 
+            {
+                return NotFound();
+            }
+            var messageUpdateModel = updateMessageDto.ToMessageFromUpdateDTO();
+            messageModel.Content = messageUpdateModel.Content;
+            await _context.SaveChangesAsync();
+            return Ok(messageModel.ToMessageDto());
+        }
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Delete([FromRoute] int id)
         {
             var messageModel = _context.Message.FirstOrDefault(x => x.MessageId == id);
             if (messageModel == null) 
             {
                 return NotFound();
             }
-            messageModel = updateMessageDto.ToMessageFromUpdateDTO();
+            _context.Message.Remove(messageModel);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetById),new { id= messageModel.MessageId}, messageModel.ToMessageDto());
+            return NoContent();
         }
     }
 }

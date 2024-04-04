@@ -6,6 +6,7 @@ using api.Data;
 using api.DTOs.CommentContentPic;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
@@ -20,18 +21,18 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var commentContentPic = _context.CommentContentPic.ToList()
-                .Select(s => s.ToCommentContentPicDto());
+            var commentContentPic =await _context.CommentContentPic.ToListAsync();
+            var commentContentPicDto = commentContentPic.Select(s => s.ToCommentContentPicDto());
 
-            return Ok(commentContentPic);
+            return Ok(commentContentPicDto);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var commentContentPic = _context.CommentContentPic.Find(id);
+            var commentContentPic =await _context.CommentContentPic.FindAsync(id);
 
             if (commentContentPic == null)
             {
@@ -42,25 +43,40 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] CreateCommentContentPicRequestDto createCommentContentPicDto)
+        public async Task<IActionResult> Create([FromBody] CreateCommentContentPicRequestDto createCommentContentPicDto)
         {
             var commentContentPicModel = createCommentContentPicDto.ToCommentContentPicFromCreateDTO();
-            _context.CommentContentPic.Add(commentContentPicModel);
-            _context.SaveChanges();
+            await _context.CommentContentPic.AddAsync(commentContentPicModel);
+            await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById),new { id= commentContentPicModel.CommentContentPicID}, commentContentPicModel.ToCommentContentPicDto());
         }
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Update([FromRoute] int id,[FromBody] UpdateCommentContentPicRequestDto updateCommentContentPicDto)
+        public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateCommentContentPicRequestDto updateCommentContentPicDto)
+        {
+            var commentContentPicModel =await _context.CommentContentPic.FirstOrDefaultAsync(x => x.CommentContentPicID == id);
+            if (commentContentPicModel == null) 
+            {
+                return NotFound();
+            }
+            var commentContentPicUpdateModel = updateCommentContentPicDto.ToCommentContentPicFromUpdateDTO();
+            commentContentPicModel.CommentContent = commentContentPicUpdateModel.CommentContent;
+            commentContentPicModel.ImageURL= commentContentPicUpdateModel.ImageURL;
+            await _context.SaveChangesAsync();
+            return Ok(commentContentPicModel.ToCommentContentPicDto());
+        }
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Delete([FromRoute] int id)
         {
             var commentContentPicModel = _context.CommentContentPic.FirstOrDefault(x => x.CommentContentPicID == id);
             if (commentContentPicModel == null) 
             {
                 return NotFound();
             }
-            commentContentPicModel = updateCommentContentPicDto.ToCommentContentPicFromUpdateDTO();
+            _context.CommentContentPic.Remove(commentContentPicModel);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetById),new { id= commentContentPicModel.CommentContentPicID}, commentContentPicModel.ToCommentContentPicDto());
+            return NoContent();
         }
     }
 }

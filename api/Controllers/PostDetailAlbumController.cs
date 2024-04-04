@@ -6,6 +6,7 @@ using api.Data;
 using api.DTOs.PostDetailAlbum;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
@@ -20,18 +21,18 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var postDetailAlbum = _context.PostDetailAlbum.ToList()
-                .Select(s => s.ToPostDetailAlbumDto());
+            var postDetailAlbum =await _context.PostDetailAlbum.ToListAsync();
+            var postDetailAlbumDto = postDetailAlbum.Select(s => s.ToPostDetailAlbumDto());
 
             return Ok(postDetailAlbum);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var postDetailAlbum = _context.PostDetailAlbum.Find(id);
+            var postDetailAlbum =await _context.PostDetailAlbum.FindAsync(id);
 
             if (postDetailAlbum == null)
             {
@@ -41,25 +42,42 @@ namespace api.Controllers
             return Ok(postDetailAlbum.ToPostDetailAlbumDto());
         }
         [HttpPost]
-        public IActionResult Create([FromBody] CreatePostDetailAlbumRequestDto createPostDetailAlbumDto)
+        public async Task<IActionResult> Create([FromBody] CreatePostDetailAlbumRequestDto createPostDetailAlbumDto)
         {
             var postDetailAlbumModel = createPostDetailAlbumDto.ToPostDetailAlbumFromCreateDTO();
-            _context.PostDetailAlbum.Add(postDetailAlbumModel);
-            _context.SaveChanges();
+            await _context.PostDetailAlbum.AddAsync(postDetailAlbumModel);
+            await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById),new { id= postDetailAlbumModel.PostDetailAlbumID}, postDetailAlbumModel.ToPostDetailAlbumDto());
         }
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Update([FromRoute] int id,[FromBody] UpdatePostDetailAlbumRequestDto updatePostDetailAlbumDto)
+        public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdatePostDetailAlbumRequestDto updatePostDetailAlbumDto)
+        {
+            var postDetailAlbumModel =await _context.PostDetailAlbum.FirstOrDefaultAsync(x => x.PostDetailAlbumID == id);
+            if (postDetailAlbumModel == null) 
+            {
+                return NotFound();
+            }
+            var postDetailAlbumUpdateModel = updatePostDetailAlbumDto.ToPostDetailAlbumFromUpdateDTO();
+            postDetailAlbumModel.Content = postDetailAlbumUpdateModel.Content;
+            postDetailAlbumModel.HashTag = postDetailAlbumUpdateModel.HashTag;
+            postDetailAlbumModel.AlbumURL = postDetailAlbumUpdateModel.AlbumURL;
+            await _context.SaveChangesAsync();
+            return Ok(postDetailAlbumModel.ToPostDetailAlbumDto());
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Delete([FromRoute] int id)
         {
             var postDetailAlbumModel = _context.PostDetailAlbum.FirstOrDefault(x => x.PostDetailAlbumID == id);
             if (postDetailAlbumModel == null) 
             {
                 return NotFound();
             }
-            postDetailAlbumModel = updatePostDetailAlbumDto.ToPostDetailAlbumFromUpdateDTO();
+            _context.PostDetailAlbum.Remove(postDetailAlbumModel);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetById),new { id= postDetailAlbumModel.PostDetailAlbumID}, postDetailAlbumModel.ToPostDetailAlbumDto());
+            return NoContent();
         }
     }
 }

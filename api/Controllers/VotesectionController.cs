@@ -6,6 +6,7 @@ using api.Data;
 using api.DTOs.Votesection;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
@@ -20,18 +21,18 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var  votesection = _context. Votesection.ToList()
-                .Select(s => s.ToVotesectionDto());
+            var  votesection =await _context. Votesection.ToListAsync();
+            var votesectionDto = votesection.Select(s => s.ToVotesectionDto());
 
-            return Ok( votesection);
+            return Ok( votesectionDto);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var  votesection = _context. Votesection.Find(id);
+            var  votesection =await _context. Votesection.FindAsync(id);
 
             if ( votesection == null)
             {
@@ -41,25 +42,40 @@ namespace api.Controllers
             return Ok( votesection.ToVotesectionDto());
         }
         [HttpPost]
-        public IActionResult Create([FromBody] CreateVoteSectionRequestDto createVoteSectionDto)
+        public async Task<IActionResult> Create([FromBody] CreateVoteSectionRequestDto createVoteSectionDto)
         {
             var votesectionModel = createVoteSectionDto.ToVoteSectionFromCreateDTO();
-            _context.Votesection.Add(votesectionModel);
-            _context.SaveChanges();
+            await _context.Votesection.AddAsync(votesectionModel);
+            await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById),new { id= votesectionModel.VotesectionID}, votesectionModel.ToVotesectionDto());
         }
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Update([FromRoute] int id,[FromBody] UpdateVoteSectionRequestDto updateVotesectionDto)
+        public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateVoteSectionRequestDto updateVotesectionDto)
+        {
+            var votesectionModel = await _context.Votesection.FirstOrDefaultAsync(x => x.VotesectionID == id);
+            if (votesectionModel == null) 
+            {
+                return NotFound();
+            }
+            var votesectionUpdateModel = updateVotesectionDto.ToVoteSectionFromUpdateDTO();
+            votesectionModel.VoteName = votesectionUpdateModel.VoteName;
+            await _context.SaveChangesAsync();
+            return CreatedAtAction(nameof(GetById),new { id= votesectionModel.VotesectionID}, votesectionModel.ToVotesectionDto());
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Delete([FromRoute] int id)
         {
             var votesectionModel = _context.Votesection.FirstOrDefault(x => x.VotesectionID == id);
             if (votesectionModel == null) 
             {
                 return NotFound();
             }
-            votesectionModel = updateVotesectionDto.ToVoteSectionFromUpdateDTO();
+            _context.Votesection.Remove(votesectionModel);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetById),new { id= votesectionModel.VotesectionID}, votesectionModel.ToVotesectionDto());
+            return NoContent();
         }
     }
 }

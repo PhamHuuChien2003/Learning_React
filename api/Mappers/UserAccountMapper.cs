@@ -30,7 +30,6 @@ namespace api.Mappers
         {
             return new UserAccount
             {
-                UserID = userAccountUpdateDto.UserID,
                 UserName = userAccountUpdateDto.UserName,
             };
         }

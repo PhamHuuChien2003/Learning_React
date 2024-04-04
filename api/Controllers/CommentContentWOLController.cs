@@ -6,6 +6,7 @@ using api.Data;
 using api.DTOs.CommentContentWOL;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
@@ -20,18 +21,18 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var commentContentWOL = _context.CommentContentWOL.ToList()
-                .Select(s => s.ToCommentContentWOLDto());
+            var commentContentWOL =await _context.CommentContentWOL.ToListAsync();
+            var commentContentWOLDto = commentContentWOL.Select(s => s.ToCommentContentWOLDto());
 
-            return Ok(commentContentWOL);
+            return Ok(commentContentWOLDto);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var commentContentWOL = _context.CommentContentWOL.Find(id);
+            var commentContentWOL =await _context.CommentContentWOL.FindAsync(id);
 
             if (commentContentWOL == null)
             {
@@ -41,25 +42,40 @@ namespace api.Controllers
             return Ok(commentContentWOL.ToCommentContentWOLDto());
         }
         [HttpPost]
-        public IActionResult Create([FromBody] CreateCommentContentWOLRequestDto createCommentContentWOLDto)
+        public async Task<IActionResult> Create([FromBody] CreateCommentContentWOLRequestDto createCommentContentWOLDto)
         {
             var commentContentWOLModel = createCommentContentWOLDto.ToCommentContentWOLFromCreateDTO();
-            _context.CommentContentWOL.Add(commentContentWOLModel);
-            _context.SaveChanges();
+            await _context.CommentContentWOL.AddAsync(commentContentWOLModel);
+            await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById), new {id = commentContentWOLModel.CommentContentWOLID}, commentContentWOLModel.ToCommentContentWOLDto());
         }
         [HttpPut]
         [Route("{id}")]
-        public IActionResult Update([FromRoute] int id,[FromBody] UpdateCommentContentWOLRequestDto updateCommentContentWOLDto)
+        public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateCommentContentWOLRequestDto updateCommentContentWOLDto)
+        {
+            var commentContentWOLModel =await _context.CommentContentWOL.FirstOrDefaultAsync(x => x.CommentContentWOLID == id);
+            if (commentContentWOLModel == null) 
+            {
+                return NotFound();
+            }
+            var commentContentWOLUpdateModel = updateCommentContentWOLDto.ToCommentContentWOLFromUpdateDTO();
+            commentContentWOLModel.CommentContent = commentContentWOLUpdateModel.CommentContent;
+            await _context.SaveChangesAsync();
+            return Ok(commentContentWOLModel.ToCommentContentWOLDto());
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult Delete([FromRoute] int id)
         {
             var commentContentWOLModel = _context.CommentContentWOL.FirstOrDefault(x => x.CommentContentWOLID == id);
             if (commentContentWOLModel == null) 
             {
                 return NotFound();
             }
-            commentContentWOLModel = updateCommentContentWOLDto.ToCommentContentWOLFromUpdateDTO();
+            _context.CommentContentWOL.Remove(commentContentWOLModel);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetById),new { id= commentContentWOLModel.CommentContentWOLID}, commentContentWOLModel.ToCommentContentWOLDto());
+            return NoContent();
         }
     }
 }

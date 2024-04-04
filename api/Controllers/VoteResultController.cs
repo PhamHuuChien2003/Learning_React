@@ -6,6 +6,7 @@ using api.Data;
 using api.DTOs.VoteResult;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
@@ -20,18 +21,18 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var  voteResult = _context. VoteResult.ToList()
-                .Select(s => s.ToVoteResultDto());
+            var  voteResult =await _context. VoteResult.ToListAsync();
+            var voteResultDto = voteResult.Select(s => s.ToVoteResultDto());
 
-            return Ok( voteResult);
+            return Ok( voteResultDto);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById([FromRoute] int id)
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var  voteResult = _context. VoteResult.Find(id);
+            var  voteResult =await _context. VoteResult.FindAsync(id);
 
             if ( voteResult == null)
             {
@@ -41,25 +42,42 @@ namespace api.Controllers
             return Ok( voteResult.ToVoteResultDto());
         }
         [HttpPost]
-        public IActionResult Create([FromBody] CreateVoteResultRequestDto createVoteResultRequestDto)
+        public async Task<IActionResult> Create([FromBody] CreateVoteResultRequestDto createVoteResultRequestDto)
         {
             var voteResultModel = createVoteResultRequestDto.ToVoteResultFromCreateDTO();
-            _context.VoteResult.Add(voteResultModel);
-            _context.SaveChanges();
+            await _context.VoteResult.AddAsync(voteResultModel);
+            await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById),new { id= voteResultModel.VoteResultID}, voteResultModel.ToVoteResultDto());
         }
-        [HttpPut]
+
+
+        // [HttpPut]
+        // [Route("{id}")]
+        // public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateVoteResultRequestDto updateVoteResultDto)
+        // {
+        //     var voteResultModel =await _context.VoteResult.FirstOrDefaultAsync(x => x.VoteResultID == id);
+        //     if (voteResultModel == null) 
+        //     {
+        //         return NotFound();
+        //     }
+        //     var voteResultUpdateModel = updateVoteResultDto.ToVoteResultFromUpdateDTO();
+        //     await _context.SaveChangesAsync();
+        //     return CreatedAtAction(nameof(GetById),new { id= voteResultModel.VoteResultID}, voteResultModel.ToVoteResultDto());
+        // }
+
+
+        [HttpDelete]
         [Route("{id}")]
-        public IActionResult Update([FromRoute] int id,[FromBody] UpdateVoteResultRequestDto updateVoteResultDto)
+        public IActionResult Delete([FromRoute] int id)
         {
             var voteResultModel = _context.VoteResult.FirstOrDefault(x => x.VoteResultID == id);
             if (voteResultModel == null) 
             {
                 return NotFound();
             }
-            voteResultModel = updateVoteResultDto.ToVoteResultFromUpdateDTO();
+            _context.VoteResult.Remove(voteResultModel);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetById),new { id= voteResultModel.VoteResultID}, voteResultModel.ToVoteResultDto());
+            return NoContent();
         }
     }
 }
