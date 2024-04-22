@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Data
 {
-    public class ApplicationDBContext : DbContext
+    public class ApplicationDBContext : IdentityDbContext<UserAccount>
     {
         public ApplicationDBContext(DbContextOptions dbContextOptions)
         : base(dbContextOptions)
@@ -16,7 +17,6 @@ namespace api.Data
         }
 
         public DbSet<User> User { get; set;}
-        public DbSet<UserAccount> UserAccount { get; set;}
         public DbSet<Relationship> Relationship { get; set;}
         public DbSet<RelationshipMember> RelationshipMember { get; set;}
         public DbSet<Message> Message { get; set;}
