@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Interfaces
 {
-    public interface IUserAccountRepository
+    public interface ITokenSevice
     {
-        
     }
 }

@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace api.Models
 {
-    public class User
+    public class User : ControllerBase
     {
         public int UserId { get; set; }
         public string FirstName { get; set; } = string.Empty;

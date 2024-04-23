@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.DTOs.User;
+using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,15 +16,17 @@ namespace api.Controllers
     public class UserController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
-        public UserController(ApplicationDBContext context)
+        private readonly IUserRepository _userRepo;
+        public UserController(ApplicationDBContext context, IUserRepository userRepo)
         {
+            _userRepo = userRepo;
             _context = context;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var user =await _context.User.ToListAsync();
+            var user =await _userRepo.GetAllAsync();
             var userDto = user.Select(s => s.ToUserDto());
 
             return Ok(userDto);
@@ -32,7 +35,7 @@ namespace api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var user =await _context.User.FindAsync(id);   
+            var user =await _userRepo.GetByIdAsync(id);   
 
             if (user == null)    
             {
@@ -46,24 +49,19 @@ namespace api.Controllers
         public async Task<IActionResult> Create([FromBody] CreateUserRequestDto createUsertDto)
         {
             var userModel = createUsertDto.ToUserFromCreateDTO();
-            await _context.User.AddAsync(userModel);
-            await _context.SaveChangesAsync();
+            await _userRepo.CreateAsync(userModel);
             return CreatedAtAction(nameof(GetById),new { id = userModel.UserId}, userModel.ToUserDto());
         }
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateUserRequestDto updateUserDto)
         {
-            var userModel =await _context.User.FirstOrDefaultAsync(x => x.UserId == id);
+            var userModel =await _userRepo.UpdateAsync(id,updateUserDto);
             if (userModel == null) 
             {
                 return NotFound();
             }
-            var userUpdateModel = updateUserDto.ToUserFromUpdateDTO();
-            userModel.FirstName = userUpdateModel.FirstName;
-            userModel.LastName = userUpdateModel.LastName;
-            userModel.Age=userUpdateModel.Age;
-            await _context.SaveChangesAsync();
+            
             return Ok(userModel.ToUserDto());
         }
 
@@ -71,13 +69,11 @@ namespace api.Controllers
         [Route("{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var userModel = _context.User.FirstOrDefault(x => x.UserId == id);
+            var userModel = _userRepo.DeleteAsync(id);
             if (userModel == null) 
             {
                 return NotFound();
             }
-            _context.User.Remove(userModel);
-            _context.SaveChanges();
             return NoContent();
         }
     }

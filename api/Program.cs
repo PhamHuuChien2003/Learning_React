@@ -49,7 +49,7 @@ builder.Services.AddAuthentication(options => {
         )
     };
 });
-
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICommentContentPicRepository, CommentContentPicRepository>();
 
 var app = builder.Build();
