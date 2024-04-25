@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.DTOs.PostDetailVideoAndCaption;
+using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,15 +16,17 @@ namespace api.Controllers
     public class PostDetailVideoAndCaptionController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
-        public PostDetailVideoAndCaptionController(ApplicationDBContext context)
+        private readonly IPostDetailVideoAndCaptionRepository _postDetailVideoAndCaptionRepo;
+        public PostDetailVideoAndCaptionController(ApplicationDBContext context, IPostDetailVideoAndCaptionRepository postDetailVideoAndCaptionRepo)
         {
             _context = context;
+            _postDetailVideoAndCaptionRepo = postDetailVideoAndCaptionRepo;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var postDetailVideoAndCaption =await _context.PostDetailVideoAndCaption.ToListAsync();
+            var postDetailVideoAndCaption =await _postDetailVideoAndCaptionRepo.GetAllAsync();
             var postDetailVideoAndCaptionDto = postDetailVideoAndCaption.Select(s => s.ToPostDetailVideoAndCaptionDto());
 
             return Ok(postDetailVideoAndCaptionDto);
@@ -32,7 +35,7 @@ namespace api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var postDetailVideoAndCaption =await _context.PostDetailVideoAndCaption.FindAsync(id);
+            var postDetailVideoAndCaption =await _postDetailVideoAndCaptionRepo.GetByIdAsync(id);
 
             if (postDetailVideoAndCaption == null)
             {
@@ -45,37 +48,29 @@ namespace api.Controllers
         public async Task<IActionResult> Create([FromBody] CreatePostDetailVideoAndCaptionRequestDto createPostDetailVideoAndCaptionDto)
         {
             var postDetailVideoAndCaptionModel = createPostDetailVideoAndCaptionDto.ToPostDetailVideoAndCaptionFromCreateDTO();
-            await _context.PostDetailVideoAndCaption.AddAsync(postDetailVideoAndCaptionModel);
-            await _context.SaveChangesAsync();
+            await _postDetailVideoAndCaptionRepo.CreateAsync(postDetailVideoAndCaptionModel);
             return CreatedAtAction(nameof(GetById), new{id=postDetailVideoAndCaptionModel.PostDetailVideoAndCaptionID},postDetailVideoAndCaptionModel.ToPostDetailVideoAndCaptionDto());
         }
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdatePostDetailVideoAndCaptionRequestDto updatePostDetailVideoAndCaptionDto)
         {
-            var postDetailVideoAndCaptionModel =await  _context.PostDetailVideoAndCaption.FirstOrDefaultAsync(x => x.PostDetailVideoAndCaptionID == id);
+            var postDetailVideoAndCaptionModel =await  _postDetailVideoAndCaptionRepo.UpdateAsync(id, updatePostDetailVideoAndCaptionDto);
             if (postDetailVideoAndCaptionModel == null) 
             {
                 return NotFound();
             }
-            var postDetailVideoAndCaptionUpdateModel = updatePostDetailVideoAndCaptionDto.ToPostDetailVideoAndCaptionFromUpdateDTO();
-            postDetailVideoAndCaptionModel.Content = postDetailVideoAndCaptionUpdateModel.Content;
-            postDetailVideoAndCaptionModel.HashTag = postDetailVideoAndCaptionUpdateModel.HashTag;
-            postDetailVideoAndCaptionModel.VideoURL = postDetailVideoAndCaptionUpdateModel.VideoURL;
-            await _context.SaveChangesAsync();
             return Ok(postDetailVideoAndCaptionModel.ToPostDetailVideoAndCaptionDto());
         }
         [HttpDelete]
         [Route("{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var postDetailVideoAndCaptionModel = _context.PostDetailVideoAndCaption.FirstOrDefault(x => x.PostDetailVideoAndCaptionID == id);
+            var postDetailVideoAndCaptionModel = _postDetailVideoAndCaptionRepo.DeleteAsync(id);
             if (postDetailVideoAndCaptionModel == null) 
             {
                 return NotFound();
             }
-            _context.PostDetailVideoAndCaption.Remove(postDetailVideoAndCaptionModel);
-            _context.SaveChanges();
             return NoContent();
         }
     }

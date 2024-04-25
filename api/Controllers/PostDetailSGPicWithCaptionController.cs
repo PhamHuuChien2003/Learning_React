@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.DTOs.PostDetailSGPicWithCaption;
+using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,15 +16,17 @@ namespace api.Controllers
     public class PostDetailSGPicWithCaptionController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
-        public PostDetailSGPicWithCaptionController(ApplicationDBContext context)
+        private readonly IPostDetailSGPicWithCaptionRepository _postDetailSGPicWithCaptionRepo;
+        public PostDetailSGPicWithCaptionController(ApplicationDBContext context, IPostDetailSGPicWithCaptionRepository postDetailSGPicWithCaptionRepo)
         {
             _context = context;
+            _postDetailSGPicWithCaptionRepo = postDetailSGPicWithCaptionRepo;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var postDetailSGPicWithCaption =await  _context.PostDetailSGPicWithCaption.ToListAsync();
+            var postDetailSGPicWithCaption =await  _postDetailSGPicWithCaptionRepo.GetAllAsync();
             var postDetailSGPicWithCaptionDto = postDetailSGPicWithCaption.Select(s => s.ToPostDetailSGPicWithCaptionDto());
 
             return Ok(postDetailSGPicWithCaptionDto);
@@ -32,7 +35,7 @@ namespace api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var postDetailSGPicWithCaption =await _context.PostDetailSGPicWithCaption.FindAsync(id);
+            var postDetailSGPicWithCaption =await _postDetailSGPicWithCaptionRepo.GetByIdAsync(id);
 
             if (postDetailSGPicWithCaption == null)
             {
@@ -45,24 +48,18 @@ namespace api.Controllers
         public async Task<IActionResult> Create([FromBody] CreatePostDetailSGPicWithCaptionRequestDto createPostDetailSGPicWithCaptiontDto)
         {
             var postDetailSGPicWithCaptionModel = createPostDetailSGPicWithCaptiontDto.ToPostDetailSGPicWithCaptionFromCreateDTO();
-            await _context.PostDetailSGPicWithCaption.AddAsync(postDetailSGPicWithCaptionModel);
-            await _context.SaveChangesAsync();
+            await _postDetailSGPicWithCaptionRepo.CreateAsync(postDetailSGPicWithCaptionModel);
              return CreatedAtAction(nameof(GetById),new { id= postDetailSGPicWithCaptionModel.PostDetailSGPicWithCaptionID}, postDetailSGPicWithCaptionModel.ToPostDetailSGPicWithCaptionDto());
         }
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdatePostDetailSGPicWithCaptionRequestDto updatePostDetailSGPicWithCaptionDto)
         {
-            var postDetailSGPicWithCaptionModel =await _context.PostDetailSGPicWithCaption.FirstOrDefaultAsync(x => x.PostDetailSGPicWithCaptionID == id);
+            var postDetailSGPicWithCaptionModel =await _postDetailSGPicWithCaptionRepo.UpdateAsync(id, updatePostDetailSGPicWithCaptionDto);
             if (postDetailSGPicWithCaptionModel == null) 
             {
                 return NotFound();
             }
-            var postDetailSGPicWithCaptionUpdateModel = updatePostDetailSGPicWithCaptionDto.ToPostDetailSGPicWithCaptionFromUpdateDTO();
-            postDetailSGPicWithCaptionModel.Content = postDetailSGPicWithCaptionUpdateModel.Content;
-            postDetailSGPicWithCaptionModel.HashTag = postDetailSGPicWithCaptionUpdateModel.HashTag;
-            postDetailSGPicWithCaptionModel.ImageURL = postDetailSGPicWithCaptionUpdateModel.ImageURL;
-            await _context.SaveChangesAsync();
             return Ok(postDetailSGPicWithCaptionModel.ToPostDetailSGPicWithCaptionDto());
         }
 
@@ -70,13 +67,11 @@ namespace api.Controllers
         [Route("{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var postDetailSGPicWithCaptionModel = _context.PostDetailSGPicWithCaption.FirstOrDefault(x => x.PostDetailSGPicWithCaptionID == id);
+            var postDetailSGPicWithCaptionModel = _postDetailSGPicWithCaptionRepo.DeleteAsync(id);
             if (postDetailSGPicWithCaptionModel == null) 
             {
                 return NotFound();
             }
-            _context.PostDetailSGPicWithCaption.Remove(postDetailSGPicWithCaptionModel);
-            _context.SaveChanges();
             return NoContent();
         }
     }

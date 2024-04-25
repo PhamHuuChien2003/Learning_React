@@ -25,7 +25,7 @@ namespace api.Repository
             return userModel;
         }
 
-        public async Task<User> DeleteAsync(int id)
+        public async Task<User?> DeleteAsync(int id)
         {
             var userModel = await _context.User.FirstOrDefaultAsync(x=>x.UserId == id);
             if (userModel == null )
@@ -47,7 +47,7 @@ namespace api.Repository
             return await _context.User.FindAsync(id);
         }
 
-        public async Task<User> UpdateAsync(int id, UpdateUserRequestDto userDto)
+        public async Task<User?> UpdateAsync(int id, UpdateUserRequestDto userDto)
         {
             var existingUser = await _context.User.FirstOrDefaultAsync(x=>x.UserId == id);
             if(existingUser == null)

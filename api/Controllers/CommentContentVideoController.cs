@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.DTOs.CommentContentVideo;
+using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,16 +15,18 @@ namespace api.Controllers
     [ApiController]
     public class CommentContentVideoController : ControllerBase
     {
+        private readonly ICommentContentVideoRepository _commentcontentVidRepo;
         private readonly ApplicationDBContext _context;
-        public CommentContentVideoController(ApplicationDBContext context)
+        public CommentContentVideoController(ApplicationDBContext context, ICommentContentVideoRepository commentcontentVidRepo)
         {
             _context = context;
+            _commentcontentVidRepo = commentcontentVidRepo;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var commentContentVideo =await _context.CommentContentVideo.ToListAsync();
+            var commentContentVideo =await _commentcontentVidRepo.GetAllAsync();
             var commentContentVideoDto =commentContentVideo.Select(s => s.ToCommentContentVideoDto());
 
             return Ok(commentContentVideoDto);
@@ -32,7 +35,7 @@ namespace api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var commentContentVideo =await _context.CommentContentVideo.FindAsync(id);
+            var commentContentVideo =await _commentcontentVidRepo.GetByIdAsync(id);
 
             if (commentContentVideo == null)
             {
@@ -45,23 +48,18 @@ namespace api.Controllers
         public async Task<IActionResult> Create([FromBody] CreateCommentContentVideoRequestDto createCommentContentVideoDto)
         {
             var commentContentVideoModel = createCommentContentVideoDto.ToCommentContentVideoFromCreateDTO();
-            await _context.CommentContentVideo.AddAsync(commentContentVideoModel);
-            await _context.SaveChangesAsync();
+            await _commentcontentVidRepo.CreateAsync(commentContentVideoModel);
             return CreatedAtAction(nameof(GetById), new { id=commentContentVideoModel.CommentContentVideoID},commentContentVideoModel.ToCommentContentVideoDto());
         }
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateCommentContentVideoRequestDto updateCommentContentVideoDto)
         {
-            var commentContentVideoModel =await _context.CommentContentVideo.FirstOrDefaultAsync(x => x.CommentContentVideoID == id);
+            var commentContentVideoModel = await _commentcontentVidRepo.UpdateAsync(id, updateCommentContentVideoDto);
             if (commentContentVideoModel == null) 
             {
                 return NotFound();
             }
-            var commentContentVideoUpdateModel = updateCommentContentVideoDto.ToCommentContentVideoFromUpdateDTO();
-            commentContentVideoModel.CommentContent = commentContentVideoUpdateModel.CommentContent;
-            commentContentVideoModel.VideoURL = commentContentVideoUpdateModel.VideoURL;
-            await _context.SaveChangesAsync();
             return Ok(commentContentVideoModel.ToCommentContentVideoDto());
         }
 
@@ -69,13 +67,11 @@ namespace api.Controllers
         [Route("{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var commentContentVideoModel = _context.CommentContentVideo.FirstOrDefault(x => x.CommentContentVideoID == id);
+            var commentContentVideoModel = _commentcontentVidRepo.DeleteAsync(id);
             if (commentContentVideoModel == null) 
             {
                 return NotFound();
             }
-            _context.CommentContentVideo.Remove(commentContentVideoModel);
-            _context.SaveChanges();
             return NoContent();
         }
     }

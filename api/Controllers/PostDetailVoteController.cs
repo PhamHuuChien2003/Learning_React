@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.DTOs.PostDetailVote;
+using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,15 +16,17 @@ namespace api.Controllers
     public class PostDetailVoteController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
-        public PostDetailVoteController(ApplicationDBContext context)
+        private readonly IPostDetailVoteRepository _postDetailVoteRepo;
+        public PostDetailVoteController(ApplicationDBContext context, IPostDetailVoteRepository postDetailVoteRepo)
         {
             _context = context;
+            _postDetailVoteRepo = postDetailVoteRepo;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var postDetailVote =await _context.PostDetailVote.ToListAsync();
+            var postDetailVote =await _postDetailVoteRepo.GetAllAsync();
             var postDetailVoteDto = postDetailVote.Select(s => s.ToPostDetailVoteDto());
 
             return Ok(postDetailVoteDto);
@@ -32,7 +35,7 @@ namespace api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var postDetailVote =await _context.PostDetailVote.FindAsync(id);
+            var postDetailVote =await _postDetailVoteRepo.GetByIdAsync(id);
 
             if (postDetailVote == null)
             {
@@ -45,8 +48,7 @@ namespace api.Controllers
         public async Task<IActionResult> Create([FromBody] CreatePostDetailVoteRequestDto createPostDetailVoteDto)
         {
             var postDetailVoteModel = createPostDetailVoteDto.ToPostDetailVoteFromCreateDTO();
-            await _context.PostDetailVote.AddAsync(postDetailVoteModel);
-            await _context.SaveChangesAsync();
+            await _postDetailVoteRepo.CreateAsync(postDetailVoteModel);
             return CreatedAtAction(nameof(GetById),new{id=postDetailVoteModel.PostDetailVoteID},postDetailVoteModel.ToPostDetailVoteDto());
             
         }
@@ -54,15 +56,11 @@ namespace api.Controllers
         [Route("{id}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdatePostDetailVoteRequestDto updatePostDetailVoteDto)
         {
-            var postDetailVoteModel =await _context.PostDetailVote.FirstOrDefaultAsync(x => x.PostDetailVoteID == id);
+            var postDetailVoteModel =await _postDetailVoteRepo.UpdateAsync(id, updatePostDetailVoteDto);
             if (postDetailVoteModel == null) 
             {
                 return NotFound();
             }
-            var postDetailVoteUpdateModel = updatePostDetailVoteDto.ToPostDetailVoteFromUpdateDTO();
-            postDetailVoteModel.Content = postDetailVoteUpdateModel.Content;
-            postDetailVoteUpdateModel.HashTag = postDetailVoteUpdateModel.HashTag;
-            await _context.SaveChangesAsync();
             return Ok(postDetailVoteModel.ToPostDetailVoteDto());
         }
 
@@ -70,13 +68,11 @@ namespace api.Controllers
         [Route("{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var postDetailVoteModel = _context.PostDetailVote.FirstOrDefault(x => x.PostDetailVoteID == id);
+            var postDetailVoteModel = _postDetailVoteRepo.DeleteAsync(id);
             if (postDetailVoteModel == null) 
             {
                 return NotFound();
             }
-            _context.PostDetailVote.Remove(postDetailVoteModel);
-            _context.SaveChanges();
             return NoContent();
         }
     }

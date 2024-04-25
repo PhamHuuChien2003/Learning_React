@@ -51,6 +51,17 @@ builder.Services.AddAuthentication(options => {
 });
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICommentContentPicRepository, CommentContentPicRepository>();
+builder.Services.AddScoped<ICommentContentVideoRepository, CommentContentVideoRepository>();
+builder.Services.AddScoped<ICommentPostRepository, CommentPostRepository>();
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+builder.Services.AddScoped<IPostDetailAlbumRepository, PostDetailAlbumRepository>();
+builder.Services.AddScoped<IPostDetailSGPicWithCaptionRepository, PostDetailSGPicWithCaptionRepository>();
+builder.Services.AddScoped<IPostDetailVideoAndCaptionRepository, PostDetailVideoAndCaptionRepository>();
+builder.Services.AddScoped<IPostDetailVoteRepository, PostDetailVoteRepository>();
+builder.Services.AddScoped<IPostDetailWOLRepository, PostDetailWOLRepository>();
+builder.Services.AddScoped<IPostRepository, PostRepository>();
+builder.Services.AddScoped<IReactPostRepository, ReactPostRepository>();
+
 
 var app = builder.Build();
 
