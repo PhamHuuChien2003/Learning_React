@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.DTOs.RelationshipMember;
+using api.Interfaces;
 using api.Mappers;
 using api.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -16,15 +17,17 @@ namespace api.Controllers
     public class RelationshipMemberController  : ControllerBase
     {
         private readonly ApplicationDBContext _context;
-        public RelationshipMemberController(ApplicationDBContext context)
+        private readonly IRelationshipMemberRepository _relationshipRepo;
+        public RelationshipMemberController(ApplicationDBContext context, IRelationshipMemberRepository relationshipRepo)
         {
             _context = context;
+            _relationshipRepo = relationshipRepo;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var relationshipMember =await _context.RelationshipMember.ToListAsync();
+            var relationshipMember =await _relationshipRepo.GetAllAsync();
             var relationshipMemberDto = relationshipMember.Select(s => s.ToRelationshipMemberDto());
 
             return Ok(relationshipMemberDto);
@@ -33,7 +36,7 @@ namespace api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            var relationshipMember =await _context.RelationshipMember.FindAsync(id);
+            var relationshipMember =await _relationshipRepo.GetByIdAsync(id);
 
             if (relationshipMember == null)
             {
@@ -46,23 +49,18 @@ namespace api.Controllers
         public async Task<IActionResult> Create([FromBody] CreateRelationshipMemberRequestDto createRelationshipMemberDto)
         {
             var relationshipMemberModel = createRelationshipMemberDto.ToRelationshipMemberFromCreateDTO();
-            await _context.RelationshipMember.AddAsync(relationshipMemberModel);
-            await _context.SaveChangesAsync();
+            await _relationshipRepo.CreateAsync(relationshipMemberModel);
             return CreatedAtAction(nameof(GetById),new { id= relationshipMemberModel.RelationshipMemberId}, relationshipMemberModel.ToRelationshipMemberDto());
         }
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateRelationshipMemberRequestDto updateRelationshipMemberDto)
         {
-            var relationshipMemberModel =await _context.RelationshipMember.FirstOrDefaultAsync(x => x.RelationshipMemberId == id);
+            var relationshipMemberModel =await _relationshipRepo.UpdateAsync(id,updateRelationshipMemberDto);
             if (relationshipMemberModel == null) 
             {
                 return NotFound();
             }
-            var relationshipMemberUpdateModel = updateRelationshipMemberDto.ToRelationshipMemberFromUpdateDTO();
-            relationshipMemberModel.UserId = relationshipMemberUpdateModel.UserId;
-            relationshipMemberModel.RelationshipId = relationshipMemberUpdateModel.RelationshipId;
-            await _context.SaveChangesAsync();
             return Ok(relationshipMemberModel.ToRelationshipMemberDto());
         }
 
@@ -70,13 +68,11 @@ namespace api.Controllers
         [Route("{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            var relationshipMemberModel = _context.RelationshipMember.FirstOrDefault(x => x.RelationshipMemberId == id);
+            var relationshipMemberModel = _relationshipRepo.DeleteAsync(id);
             if (relationshipMemberModel == null) 
             {
                 return NotFound();
             }
-            _context.RelationshipMember.Remove(relationshipMemberModel);
-            _context.SaveChanges();
             return NoContent();
         }
     }
