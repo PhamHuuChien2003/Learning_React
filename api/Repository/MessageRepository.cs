@@ -39,12 +39,12 @@ namespace api.Repository
 
         public async Task<List<Message>> GetAllAsync()
         {
-            return await _context.Message.ToListAsync();
+            return await _context.Message.Include(c=>c.RelationshipMember).ToListAsync();
         }
 
         public async Task<Message?> GetByIdAsync(int id)
         {
-            return await _context.Message.FindAsync(id);
+            return await _context.Message.Include(c=>c.RelationshipMember).FirstOrDefaultAsync(i=>i.MessageId == id);
         }
 
         public async Task<Message?> UpdateAsync(int id, UpdateMessageRequestDto messageDto)

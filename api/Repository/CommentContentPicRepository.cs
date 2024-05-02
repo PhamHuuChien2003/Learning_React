@@ -27,7 +27,7 @@ namespace api.Repository
             return commentContentPicModel;
         }
 
-        public async Task<CommentContentPic> DeleteAsync(int id)
+        public async Task<CommentContentPic?> DeleteAsync(int id)
         {
             var commentContentPicModel = _context.CommentContentPic.FirstOrDefault(x => x.CommentContentPicID == id);
             if (commentContentPicModel == null) 
@@ -49,7 +49,7 @@ namespace api.Repository
             return await _context.CommentContentPic.FindAsync(id);
         }
 
-        public async Task<CommentContentPic> UpdateAsync(int id, UpdateCommentContentPicRequestDto commentContentPicDto)
+        public async Task<CommentContentPic?> UpdateAsync(int id, UpdateCommentContentPicRequestDto commentContentPicDto)
         {
             var existingCommenrContentPic = await _context.CommentContentPic.FirstOrDefaultAsync(x => x.CommentContentPicID == id);
             if (existingCommenrContentPic == null)

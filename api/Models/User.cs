@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Models
 {
-    public class User : ControllerBase
+    public class User 
     {
         public int UserId { get; set; }
         public string FirstName { get; set; } = string.Empty;

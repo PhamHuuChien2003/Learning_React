@@ -16,6 +16,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.Services.AddControllers().AddNewtonsoftJson(options => {
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
+
 builder.Services.AddDbContext<ApplicationDBContext> (options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
@@ -37,7 +42,7 @@ builder.Services.AddAuthentication(options => {
     options.DefaultSignInScheme = 
     options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options => {
-    options.TokenValidationParameters = new  Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
         ValidIssuer = builder.Configuration["JWT:Issuer"],
@@ -61,6 +66,12 @@ builder.Services.AddScoped<IPostDetailVoteRepository, PostDetailVoteRepository>(
 builder.Services.AddScoped<IPostDetailWOLRepository, PostDetailWOLRepository>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<IReactPostRepository, ReactPostRepository>();
+builder.Services.AddScoped<IRelationshipRepository, RelationshipRepository>();
+builder.Services.AddScoped<IRelationshipMemberRepository, RelationshipMemberRepository>();
+builder.Services.AddScoped<IVoteResultRepository, VoteResultRepository>();
+builder.Services.AddScoped<IVotesectionRepository, VotesectionRepository>();
+
+
 
 
 var app = builder.Build();

@@ -8,6 +8,6 @@ namespace api.Models
 {
     public class UserAccount : IdentityUser
     {
-
+        
     }
 }
