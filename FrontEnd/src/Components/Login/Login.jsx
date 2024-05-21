@@ -1,30 +1,69 @@
-import { useNavigate } from "react-router-dom";
+import React from "react";
+
 import "./Login.css";
 
-export default function Login() {
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import {useLogIn} from "../../Hooks/Auth/useLogIn"
+import axios from "axios";
+// Validation schema without TypeScript type annotations
+const validation = Yup.object().shape({
+  userName: Yup.string().required("Username is required"),
+  password: Yup.string().required("Password is required"),
+});
 
-    const navigate = useNavigate();
+export default function Login(props) {
+  const  loginUser  = useLogIn();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(validation) });
+
+  const handleLogin = (form) => {
+    const { userName, password } = form;
+    try {
+       loginUser(userName, password);
+    } catch (error) {
+      console.error("Login Error:", error);
+    }
+    
+  };
 
 
-    return (
+  return (
     <>
-      <div class="row">
-        <div class="col-logo">
-          <img
-            src="./icon/fblg.svg"
-            alt="Logo"
-          />
+      <div className="row">
+        <div className="col-logo">
+          <img src="./icon/fblg.svg" alt="Logo" />
           <h2>
             Facebook helps you connect and share with the people in your life.
           </h2>
         </div>
-        <div class="col-form">
-          <div class="form-container">
-            <input type="text" placeholder="Email or phone number" />
-            <input type="password" placeholder="Password" />
-            <button class="btn-login" onClick={()=>navigate("/home")}>Login</button>
+        <div className="col-form">
+          <div className="form-container">
+            <form onSubmit={handleSubmit(handleLogin)}>
+              <input
+                id="userName"
+                {...register("userName")}
+                type="text"
+                placeholder="Email or phone number"
+              />
+              <input
+                id="password"
+                type="password"
+                {...register("password")}
+                placeholder="Password"
+              />
+              <button type="Submit" className="btn-login" >
+                Login
+              </button>
+            </form>
             <a href="#">Forgotten password?</a>
-            <button class="btn-new">Create new Account</button>
+            <button className="btn-new" type="submit">
+              Create new Account
+            </button>
           </div>
           <p>
             <a href="#">

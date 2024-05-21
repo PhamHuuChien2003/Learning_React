@@ -147,3 +147,7 @@ C:\Users\ASUS\Documents\phamhuuchien\thuctap\Learning_React\api\bin\Debug\net8.0
 C:\Users\ASUS\Documents\phamhuuchien\thuctap\Learning_React\api\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\ASUS\Documents\phamhuuchien\thuctap\Learning_React\api\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\ASUS\Documents\phamhuuchien\thuctap\Learning_React\api\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\ASUS\Documents\phamhuuchien\thuctap\Learning_React\api\bin\Debug\net8.0\System.Web.Cors.dll
+C:\Users\ASUS\Documents\phamhuuchien\thuctap\Learning_React\api\bin\Debug\net8.0\System.Net.Http.Formatting.dll
+C:\Users\ASUS\Documents\phamhuuchien\thuctap\Learning_React\api\bin\Debug\net8.0\System.Web.Http.dll
+C:\Users\ASUS\Documents\phamhuuchien\thuctap\Learning_React\api\bin\Debug\net8.0\System.Web.Http.Cors.dll

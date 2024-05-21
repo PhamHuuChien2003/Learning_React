@@ -6,7 +6,6 @@ using api.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -101,7 +100,7 @@ builder.Services.AddScoped<IRelationshipMemberRepository, RelationshipMemberRepo
 builder.Services.AddScoped<IVoteResultRepository, VoteResultRepository>();
 builder.Services.AddScoped<IVotesectionRepository, VotesectionRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
-
+builder.Services.AddCors();
 
 
 var app = builder.Build();
@@ -110,10 +109,20 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    });
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(x => x
+     .AllowAnyMethod()
+     .AllowAnyHeader()
+     .AllowCredentials()
+      .WithOrigins("https://localhost:3000")
+      .SetIsOriginAllowed(origin => true));
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -1,12 +1,18 @@
-
-import React, { createContext, useEffect, useState } from "react";
-import { UserProfile } from "../Models/User";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginAPI, registerAPI } from "../Services/AuthService";
+import { LoginAPI, RegisterAPI } from "../Services/AuthService";
 import { toast } from "react-toastify";
+import React from "react";
 import axios from "axios";
 
-const UserContext = createContext();
+const UserContext = createContext({
+  user: null,
+  token: null,
+  registerUser: (email, username, password) => {},
+  loginUser: (username, password) => {},
+  logout: () => {},
+  isLoggedIn: () => false,
+});
 
 export const UserProvider = ({ children }) => {
   const navigate = useNavigate();
@@ -15,30 +21,30 @@ export const UserProvider = ({ children }) => {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
-    if (user && token) {
-      setUser(JSON.parse(user));
-      setToken(token);
-      axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("token");
+    if (storedUser && storedToken) {
+      setUser(JSON.parse(storedUser));
+      setToken(storedToken);
+      axios.defaults.headers.common["Authorization"] = "Bearer " + storedToken;
     }
     setIsReady(true);
   }, []);
 
   const registerUser = async (email, username, password) => {
     try {
-      const res = await registerAPI(email, username, password);
+      const res = await RegisterAPI(email, username, password);
       if (res) {
-        localStorage.setItem("token", res?.data.token);
+        localStorage.setItem("token", res.token);
         const userObj = {
-          userName: res?.data.userName,
-          email: res?.data.email,
+          userName: res.userName,
+          email: res.email,
         };
         localStorage.setItem("user", JSON.stringify(userObj));
-        setToken(res?.data.token);
+        setToken(res.token);
         setUser(userObj);
-        toast.success("Login Success!");
-        navigate("/search");
+        toast.success("Registration Success!");
+        navigate("/home");
       }
     } catch (e) {
       toast.warning("Server error occurred");
@@ -47,18 +53,18 @@ export const UserProvider = ({ children }) => {
 
   const loginUser = async (username, password) => {
     try {
-      const res = await loginAPI(username, password);
+      const res = await LoginAPI(username, password);
       if (res) {
-        localStorage.setItem("token", res?.data.token);
+        localStorage.setItem("token", res.token);
         const userObj = {
-          userName: res?.data.userName,
-          email: res?.data.email,
+          userName: res.userName,
+          email: res.email,
         };
         localStorage.setItem("user", JSON.stringify(userObj));
-        setToken(res?.data.token);
+        setToken(res.token);
         setUser(userObj);
         toast.success("Login Success!");
-        navigate("/search");
+        navigate("/home");
       }
     } catch (e) {
       toast.warning("Server error occurred");
@@ -73,7 +79,7 @@ export const UserProvider = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
-    setToken("");
+    setToken(null);
     navigate("/");
   };
 
