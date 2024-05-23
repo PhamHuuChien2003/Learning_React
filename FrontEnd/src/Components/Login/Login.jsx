@@ -5,8 +5,8 @@ import "./Login.css";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import {useLogIn} from "../../Hooks/Auth/useLogIn"
-import axios from "axios";
+import { useSignIn} from "../../Hooks/Auth/useSignIn"
+
 // Validation schema without TypeScript type annotations
 const validation = Yup.object().shape({
   userName: Yup.string().required("Username is required"),
@@ -14,7 +14,7 @@ const validation = Yup.object().shape({
 });
 
 export default function Login(props) {
-  const  loginUser  = useLogIn();
+  const  signIn  = useSignIn();
   const {
     register,
     handleSubmit,
@@ -22,16 +22,14 @@ export default function Login(props) {
   } = useForm({ resolver: yupResolver(validation) });
 
   const handleLogin = (form) => {
-    const { userName, password } = form;
     try {
-       loginUser(userName, password);
+      const username = form.userName;
+      const password = form.password;
+      signIn({username,password});
     } catch (error) {
       console.error("Login Error:", error);
     }
-    
   };
-
-
   return (
     <>
       <div className="row">

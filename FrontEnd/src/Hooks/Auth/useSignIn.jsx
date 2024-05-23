@@ -1,23 +1,28 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "./useUser";
+import { LoginAPI } from "../../Services/AuthService";
 
-export function useLogIn(email, password) {
+export function useSignIn() {
+
+  debugger
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const QUERY_KEY = {
     todos: "todos",
     user: "user",
   };
-  const getDataUser = useUser(email, password)
-  const { mutate: logInMutation } = useMutation({
-    mutationFn: getDataUser,
+  const { mutate: signInMutation } = useMutation({
+    mutationFn:  async ({username,password}) =>  LoginAPI(username,password) ,
     onSuccess: (data) => {
       queryClient.setQueryData([QUERY_KEY.user], data);
       navigate("/home");
     },
     onError: () => {<>error</>},
   });
+  debugger
 
-  return logInMutation;
+
+
+
+  return signInMutation;
 }
