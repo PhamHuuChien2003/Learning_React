@@ -1,4 +1,5 @@
 import axios from "axios";
+import { handleError } from "../Helpers/ErrorHandler.jsx";
 
 const api = "http://localhost:5149/api/";
 
@@ -9,15 +10,13 @@ export const LoginAPI = async (username, password) => {
       username: username,
       password: password,
     });
-    debugger
-    console.log("data",res)
     return res;
   } catch (error) {
-    return <>error</>;
+    handleError(error);
   }
 };
 
-export const RegisterAPI = async ({email, username, password}) => {
+export const RegisterAPI = async (email, username, password) => {
   try {
     const data = await axios.post(api + "account/register", {
       username: username,
@@ -26,6 +25,6 @@ export const RegisterAPI = async ({email, username, password}) => {
     });
     return data;
   } catch (error) {
-    return <>error</>;
+    handleError(error);
   }
 };

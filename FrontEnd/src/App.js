@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // import the library
@@ -10,8 +10,10 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { faTwitter, faFontAwesome } from "@fortawesome/free-brands-svg-icons";
 import "./App.css";
-import HomePage from "./Pages/HomePage.jsx";
+import "react-toastify/ReactToastify.css"
 import LoginPage from "./Pages/LoginPage.jsx";
+import HomePage from "./Pages/Homepage.jsx";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
           <Route exact path="/home" element={<HomePage />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer/>
     </div>
   );
 }
