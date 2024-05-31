@@ -33,7 +33,7 @@ namespace api.Controllers
             return Ok(relationshipMemberDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var relationshipMember =await _relationshipRepo.GetByIdAsync(id);
@@ -53,7 +53,7 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById),new { id= relationshipMemberModel.RelationshipMemberId}, relationshipMemberModel.ToRelationshipMemberDto());
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateRelationshipMemberRequestDto updateRelationshipMemberDto)
         {
             var relationshipMemberModel =await _relationshipRepo.UpdateAsync(id,updateRelationshipMemberDto);
@@ -65,7 +65,7 @@ namespace api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
             var relationshipMemberModel = _relationshipRepo.DeleteAsync(id);

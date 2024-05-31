@@ -13,9 +13,7 @@ export function useSignIn() {
     user: "user",
   };
   const signIn = async (username, password) => {
-    debugger
     const res = await LoginAPI(username, password)
-      debugger
     if (res===undefined) toast.warning("Failed on sign in request") 
       else return res;
   }

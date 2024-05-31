@@ -32,7 +32,7 @@ namespace api.Controllers
             return Ok(commentContentVideoDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var commentContentVideo =await _commentcontentVidRepo.GetByIdAsync(id);
@@ -52,7 +52,7 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById), new { id=commentContentVideoModel.CommentContentVideoID},commentContentVideoModel.ToCommentContentVideoDto());
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateCommentContentVideoRequestDto updateCommentContentVideoDto)
         {
             var commentContentVideoModel = await _commentcontentVidRepo.UpdateAsync(id, updateCommentContentVideoDto);
@@ -64,7 +64,7 @@ namespace api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
             var commentContentVideoModel = _commentcontentVidRepo.DeleteAsync(id);

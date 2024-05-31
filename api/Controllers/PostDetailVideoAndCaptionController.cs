@@ -32,7 +32,7 @@ namespace api.Controllers
             return Ok(postDetailVideoAndCaptionDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var postDetailVideoAndCaption =await _postDetailVideoAndCaptionRepo.GetByIdAsync(id);
@@ -52,7 +52,7 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById), new{id=postDetailVideoAndCaptionModel.PostDetailVideoAndCaptionID},postDetailVideoAndCaptionModel.ToPostDetailVideoAndCaptionDto());
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdatePostDetailVideoAndCaptionRequestDto updatePostDetailVideoAndCaptionDto)
         {
             var postDetailVideoAndCaptionModel =await  _postDetailVideoAndCaptionRepo.UpdateAsync(id, updatePostDetailVideoAndCaptionDto);
@@ -63,7 +63,7 @@ namespace api.Controllers
             return Ok(postDetailVideoAndCaptionModel.ToPostDetailVideoAndCaptionDto());
         }
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
             var postDetailVideoAndCaptionModel = _postDetailVideoAndCaptionRepo.DeleteAsync(id);

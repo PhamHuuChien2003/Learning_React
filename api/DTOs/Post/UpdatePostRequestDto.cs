@@ -12,8 +12,8 @@ namespace api.DTOs.Post
         public string  Type { get; set; } = string.Empty;
         public DateTime Posttime { get; set; }=DateTime.Now;
         public int? UserId { get; set; }
-        public List<UpdateCommentPostRequestDto>? CommentPosts { get; set; } 
-        public List<UpdateReactPostRequestDto>? ReactPosts { get; set; } 
+        // public List<UpdateCommentPostRequestDto>? CommentPosts { get; set; } 
+        // public List<UpdateReactPostRequestDto>? ReactPosts { get; set; } 
 
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using api.Data;
 
@@ -11,9 +12,11 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240531020207_initfix")]
+    partial class initfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,13 +54,13 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "803532d6-093d-4027-a9c2-9b1b22ace628",
+                            Id = "0d8df324-e68f-44f6-89af-534285d70230",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "202325da-de67-4f9a-af9a-6abe8088f611",
+                            Id = "424afdaf-6438-43f9-9420-324373dc0809",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -781,7 +784,7 @@ namespace api.Migrations
             modelBuilder.Entity("api.Models.Post", b =>
                 {
                     b.HasOne("api.Models.User", "User")
-                        .WithMany("Posts")
+                        .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
@@ -854,7 +857,7 @@ namespace api.Migrations
                         .HasForeignKey("RelationshipId");
 
                     b.HasOne("api.Models.User", "User")
-                        .WithMany("RelationshipMembers")
+                        .WithMany()
                         .HasForeignKey("UserId");
 
                     b.Navigation("Relationship");
@@ -918,13 +921,6 @@ namespace api.Migrations
             modelBuilder.Entity("api.Models.RelationshipMember", b =>
                 {
                     b.Navigation("Messages");
-                });
-
-            modelBuilder.Entity("api.Models.User", b =>
-                {
-                    b.Navigation("Posts");
-
-                    b.Navigation("RelationshipMembers");
                 });
 #pragma warning restore 612, 618
         }

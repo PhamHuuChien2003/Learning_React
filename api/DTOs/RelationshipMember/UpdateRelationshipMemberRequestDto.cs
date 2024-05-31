@@ -8,6 +8,7 @@ namespace api.DTOs.RelationshipMember
 {
     public class UpdateRelationshipMemberRequestDto
     {
+        // public int RelationshipMemberId { get; set; }
         public int? UserId { get; set; }
         public int? RelationshipId { get; set; }
         public List<UpdateMessageRequestDto>? Messages { get; set; }

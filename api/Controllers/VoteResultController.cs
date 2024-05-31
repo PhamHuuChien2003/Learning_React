@@ -32,7 +32,7 @@ namespace api.Controllers
             return Ok( voteResultDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var  voteResult =await _voteResultRepo.GetByIdAsync(id);
@@ -54,7 +54,7 @@ namespace api.Controllers
 
 
         // [HttpPut]
-        // [Route("{id}")]
+        // [Route("{id:int}")]
         // public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateVoteResultRequestDto updateVoteResultDto)
         // {
         //     var voteResultModel =await _context.VoteResult.FirstOrDefaultAsync(x => x.VoteResultID == id);
@@ -69,7 +69,7 @@ namespace api.Controllers
 
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
             var voteResultModel = _voteResultRepo.DeleteAsync(id);

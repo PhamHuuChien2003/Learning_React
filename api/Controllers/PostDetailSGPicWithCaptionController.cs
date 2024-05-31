@@ -32,7 +32,7 @@ namespace api.Controllers
             return Ok(postDetailSGPicWithCaptionDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var postDetailSGPicWithCaption =await _postDetailSGPicWithCaptionRepo.GetByIdAsync(id);
@@ -52,7 +52,7 @@ namespace api.Controllers
              return CreatedAtAction(nameof(GetById),new { id= postDetailSGPicWithCaptionModel.PostDetailSGPicWithCaptionID}, postDetailSGPicWithCaptionModel.ToPostDetailSGPicWithCaptionDto());
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdatePostDetailSGPicWithCaptionRequestDto updatePostDetailSGPicWithCaptionDto)
         {
             var postDetailSGPicWithCaptionModel =await _postDetailSGPicWithCaptionRepo.UpdateAsync(id, updatePostDetailSGPicWithCaptionDto);
@@ -64,7 +64,7 @@ namespace api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
             var postDetailSGPicWithCaptionModel = _postDetailSGPicWithCaptionRepo.DeleteAsync(id);

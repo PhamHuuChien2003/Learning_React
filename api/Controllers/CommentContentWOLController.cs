@@ -32,7 +32,7 @@ namespace api.Controllers
             return Ok(commentContentWOLDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var commentContentWOL =await _commentContentWOLRepo.GetByIdAsync(id);
@@ -52,7 +52,7 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById), new {id = commentContentWOLModel.CommentContentWOLID}, commentContentWOLModel.ToCommentContentWOLDto());
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateCommentContentWOLRequestDto updateCommentContentWOLDto)
         {
             var commentContentWOLModel =await _commentContentWOLRepo.UpdateAsync(id, updateCommentContentWOLDto);
@@ -64,7 +64,7 @@ namespace api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
             var commentContentWOLModel = _commentContentWOLRepo.DeleteAsync(id);

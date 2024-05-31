@@ -32,7 +32,7 @@ namespace api.Controllers
             return Ok(commentPostDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var commentPost =await _commentPostRepo.GetByIdAsync(id);
@@ -52,7 +52,7 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById), new { id = commentPostModel.CommentPostID},commentPostModel.ToCommentPostDto());
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateCommentPostRequestDto updateCommentPostDto)
         {
             var commentPostModel =await _commentPostRepo.UpdateAsync(id, updateCommentPostDto);
@@ -63,7 +63,7 @@ namespace api.Controllers
             return Ok(commentPostModel.ToCommentPostDto());
         }
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
             var commentPostModel = _commentPostRepo.DeleteAsync(id);

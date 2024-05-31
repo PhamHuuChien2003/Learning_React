@@ -26,7 +26,7 @@ namespace api.Mappers
             {
                 StartTime = createRelationshipDto.StartTime,
                 Type = createRelationshipDto.Type,
-                RelationshipMembers = createRelationshipDto.RelationshipMembers.Select(c => c.ToRelationshipMemberFromCreateDTO()).ToList()
+                // RelationshipMembers = createRelationshipDto.RelationshipMembers.Select(c => c.ToRelationshipMemberFromCreateDTO()).ToList()
             };
         }
         public static Relationship ToRelationshipFromUpdateDTO(this UpdateRelationshipRequestDto createRelationshipUpdateDto)
@@ -35,7 +35,7 @@ namespace api.Mappers
             {
                 StartTime = createRelationshipUpdateDto.StartTime,
                 Type = createRelationshipUpdateDto.Type,
-                RelationshipMembers = createRelationshipUpdateDto.RelationshipMembers.Select(c => c.ToRelationshipMemberFromUpdateDTO()).ToList()
+                // RelationshipMembers = createRelationshipUpdateDto.RelationshipMembers.Select(c => c.ToRelationshipMemberFromUpdateDTO()).ToList()
             };
         }
     }

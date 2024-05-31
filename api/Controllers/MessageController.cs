@@ -32,7 +32,7 @@ namespace api.Controllers
             return Ok(messageDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var message =await _messageRepo.GetByIdAsync(id);
@@ -52,7 +52,7 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById),new {id=messageModel.MessageId},messageModel.ToMessageDto());
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateMessageRequestDto updateMessageDto)
         {
             var messageModel =await _messageRepo.UpdateAsync(id, updateMessageDto);
@@ -63,7 +63,7 @@ namespace api.Controllers
             return Ok(messageModel.ToMessageDto());
         }
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
             var messageModel = _messageRepo.DeleteAsync(id);

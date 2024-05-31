@@ -9,10 +9,11 @@ namespace api.DTOs.Post
 {
     public class CreatePostRequestDto
     {
+        
         public string  Type { get; set; } = string.Empty;
         public DateTime Posttime { get; set; }=DateTime.Now;
         public int? UserId { get; set; }
-        public List<CreateCommentPostRequestDto>? CommentPosts { get; set; } 
-        public List<CreateReactPostRequestDto>? ReactPosts { get; set; } 
+        // public List<CreateCommentPostRequestDto>? CommentPosts { get; set; } 
+        // public List<CreateReactPostRequestDto>? ReactPosts { get; set; } 
     }
 }

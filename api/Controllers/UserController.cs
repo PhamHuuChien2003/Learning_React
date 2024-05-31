@@ -32,7 +32,7 @@ namespace api.Controllers
             return Ok(userDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var user =await _userRepo.GetByIdAsync(id);   
@@ -53,7 +53,7 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById),new { id = userModel.UserId}, userModel.ToUserDto());
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateUserRequestDto updateUserDto)
         {
             var userModel =await _userRepo.UpdateAsync(id,updateUserDto);
@@ -66,7 +66,7 @@ namespace api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
             var userModel = _userRepo.DeleteAsync(id);

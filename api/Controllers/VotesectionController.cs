@@ -32,7 +32,7 @@ namespace api.Controllers
             return Ok( votesectionDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var  votesection =await _votesectionRepo.GetByIdAsync(id);
@@ -52,7 +52,7 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById),new { id= votesectionModel.VotesectionID}, votesectionModel.ToVotesectionDto());
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateVoteSectionRequestDto updateVotesectionDto)
         {
             var votesectionModel = await _votesectionRepo.UpdateAsync(id, updateVotesectionDto);
@@ -64,7 +64,7 @@ namespace api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
             var votesectionModel = _votesectionRepo.DeleteAsync(id);

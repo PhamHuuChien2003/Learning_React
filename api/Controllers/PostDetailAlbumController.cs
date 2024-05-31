@@ -32,7 +32,7 @@ namespace api.Controllers
             return Ok(postDetailAlbumDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var postDetailAlbum =await _postDetailAlbumRepo.GetByIdAsync(id);
@@ -52,7 +52,7 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById),new { id= postDetailAlbumModel.PostDetailAlbumID}, postDetailAlbumModel.ToPostDetailAlbumDto());
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdatePostDetailAlbumRequestDto updatePostDetailAlbumDto)
         {
             var postDetailAlbumModel =await _postDetailAlbumRepo.UpdateAsync(id, updatePostDetailAlbumDto);
@@ -64,7 +64,7 @@ namespace api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
             var postDetailAlbumModel = _postDetailAlbumRepo.DeleteAsync(id);

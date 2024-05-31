@@ -28,8 +28,8 @@ namespace api.Mappers
                 Type = postDto.Type,
                 Posttime = postDto.Posttime,
                 UserId = postDto.UserId,
-                CommentPosts = postDto.CommentPosts.Select(c => c.ToCommentPostFromCreateDTO()).ToList(),
-                ReactPosts = postDto.ReactPosts.Select(c=>c.ToReactPostFromCreateDTO()).ToList(),
+                // CommentPosts = postDto.CommentPosts.Select(c => c.ToCommentPostFromCreateDTO()).ToList(),
+                // ReactPosts = postDto.ReactPosts.Select(c=>c.ToReactPostFromCreateDTO()).ToList(),
             };
         }
         public static Post ToPostFromUpdateDTO(this UpdatePostRequestDto postUpdateDto)
@@ -39,8 +39,8 @@ namespace api.Mappers
                 Type = postUpdateDto.Type,
                 Posttime = postUpdateDto.Posttime,
                 UserId = postUpdateDto.UserId,
-                CommentPosts = postUpdateDto.CommentPosts.Select(c => c.ToCommentPostFromUpdateDTO()).ToList(),
-                ReactPosts = postUpdateDto.ReactPosts.Select(c=>c.ToReactPostFromUpdateDTO()).ToList(),
+                // CommentPosts = postUpdateDto.CommentPosts.Select(c => c.ToCommentPostFromUpdateDTO()).ToList(),
+                // ReactPosts = postUpdateDto.ReactPosts.Select(c=>c.ToReactPostFromUpdateDTO()).ToList(),
             };
         }
     }

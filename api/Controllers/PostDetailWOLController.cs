@@ -32,7 +32,7 @@ namespace api.Controllers
             return Ok(postDetailWOLDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var postDetailWOL =await _postDetailWOLRepo.GetByIdAsync(id);
@@ -53,7 +53,7 @@ namespace api.Controllers
 
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdatePostDetailWOLRequestDto updatePostDetailWOLDto)
         {
             var postDetailWOLModel =await _postDetailWOLRepo.UpdateAsync(id, updatePostDetailWOLDto);
@@ -65,7 +65,7 @@ namespace api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
             var postDetailWOLModel = _postDetailWOLRepo.DeleteAsync(id);

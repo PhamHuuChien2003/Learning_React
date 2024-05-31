@@ -32,7 +32,7 @@ namespace api.Controllers
             return Ok(reactPostDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var reactPost =await _reactPostRepo.GetByIdAsync(id);
@@ -52,7 +52,7 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById),new { id= reactPostModel.ReactPostID}, reactPostModel.ToReactPostDto());
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateReactPostRequestDto updateReactPostDto)
         {
             var reactPostModel =await  _reactPostRepo.UpdateAsync(id, updateReactPostDto);
@@ -64,7 +64,7 @@ namespace api.Controllers
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
             var reactPostModel = _reactPostRepo.DeleteAsync(id);

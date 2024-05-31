@@ -32,7 +32,7 @@ namespace api.Controllers
             return Ok(commentContentPicDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var commentContentPic =await _commentContentPicRepository.GetByIdAsync(id);
@@ -53,7 +53,7 @@ namespace api.Controllers
             return CreatedAtAction(nameof(GetById),new { id= commentContentPicModel.CommentContentPicID}, commentContentPicModel.ToCommentContentPicDto());
         }
         [HttpPut]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id,[FromBody] UpdateCommentContentPicRequestDto updateCommentContentPicDto)
         {
             var commentContentPicModel =await _commentContentPicRepository.UpdateAsync(id,updateCommentContentPicDto);
@@ -64,7 +64,7 @@ namespace api.Controllers
             return Ok(commentContentPicModel.ToCommentContentPicDto());
         }
         [HttpDelete]
-        [Route("{id}")]
+        [Route("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var commentContentPicModel = await _commentContentPicRepository.DeleteAsync(id);

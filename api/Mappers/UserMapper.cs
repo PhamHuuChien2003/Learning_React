@@ -17,8 +17,8 @@ namespace api.Mappers
                 FirstName = userModel.FirstName,
                 LastName = userModel.LastName,
                 Age = userModel.Age,
-                RelationshipMembers = userModel.RelationshipMembers.Select(c=>c.ToRelationshipMemberDto()).ToList(),
-                Posts = userModel.Posts.Select(c=>c.ToPostDto()).ToList()
+                // RelationshipMembers = userModel.RelationshipMembers.Select(c=>c.ToRelationshipMemberDto()).ToList(),
+                // Posts = userModel.Posts.Select(c=>c.ToPostDto()).ToList()
             };
         }
         public static User ToUserFromCreateDTO(this CreateUserRequestDto userDto)
@@ -28,8 +28,8 @@ namespace api.Mappers
                 FirstName = userDto.FirstName,
                 LastName = userDto.LastName,
                 Age = userDto.Age,
-                RelationshipMembers = userDto.RelationshipMembers.Select(c=>c.ToRelationshipMemberFromCreateDTO()).ToList(),
-                Posts = userDto.Posts.Select(c=>c.ToPostFromCreateDTO()).ToList()
+                // RelationshipMembers = userDto.RelationshipMembers.Select(c=>c.ToRelationshipMemberFromCreateDTO()).ToList(),
+                // Posts = userDto.Posts.Select(c=>c.ToPostFromCreateDTO()).ToList()
             };
         }
         public static User ToUserFromUpdateDTO(this UpdateUserRequestDto userUpdateDto)
@@ -39,8 +39,8 @@ namespace api.Mappers
                 FirstName = userUpdateDto.FirstName,
                 LastName = userUpdateDto.LastName,
                 Age = userUpdateDto.Age,
-                RelationshipMembers = userUpdateDto.RelationshipMembers.Select(c=>c.ToRelationshipMemberFromUpdateDTO()).ToList(),
-                Posts = userUpdateDto.Posts.Select(c=>c.ToPostFromUpdateDTO()).ToList()
+                // RelationshipMembers = userUpdateDto.RelationshipMembers.Select(c=>c.ToRelationshipMemberFromUpdateDTO()).ToList(),
+                // Posts = userUpdateDto.Posts.Select(c=>c.ToPostFromUpdateDTO()).ToList()
             };
         }
     }

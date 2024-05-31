@@ -10,6 +10,6 @@ namespace api.DTOs.Relationship
     {
         public DateTime StartTime { get; set;} = DateTime.Now ;
         public string Type { get; set; } = string.Empty;
-        public List<CreateRelationshipMemberRequestDto>? RelationshipMembers { get; set; }
+        // public List<CreateRelationshipMemberRequestDto>? RelationshipMembers { get; set; }
     }
 }
