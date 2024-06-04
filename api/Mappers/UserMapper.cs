@@ -17,8 +17,8 @@ namespace api.Mappers
                 FirstName = userModel.FirstName,
                 LastName = userModel.LastName,
                 Age = userModel.Age,
-                // RelationshipMembers = userModel.RelationshipMembers.Select(c=>c.ToRelationshipMemberDto()).ToList(),
-                // Posts = userModel.Posts.Select(c=>c.ToPostDto()).ToList()
+                RelationshipMembers = userModel.RelationshipMembers.Select(c=>c.ToRelationshipMemberDto()).ToList(),
+                Posts = userModel.Posts.Select(c=>c.ToPostDto()).ToList()
             };
         }
         public static User ToUserFromCreateDTO(this CreateUserRequestDto userDto)
