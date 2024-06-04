@@ -39,7 +39,7 @@ namespace api.Repository
 
         public async Task<List<PostDetailVote>> GetAllAsync()
         {
-            return await _context.PostDetailVote.ToListAsync();
+            return await _context.PostDetailVote.Include(c=>c.Votesections).ToListAsync();
         }
 
         public async Task<PostDetailVote?> GetByIdAsync(int id)
