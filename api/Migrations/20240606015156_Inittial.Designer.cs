@@ -12,8 +12,8 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240502020043_SeedRole")]
-    partial class SeedRole
+    [Migration("20240606015156_Inittial")]
+    partial class Inittial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,13 +54,13 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6f3a838c-10a2-48e9-be39-ef3e59cc9c69",
+                            Id = "eca545ba-bd41-4cc3-87ec-afff51e0a6af",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "94d838ee-7620-4df8-b49b-dbe582903fe2",
+                            Id = "d82508b0-86c8-490d-b95c-116932cccf06",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -554,7 +554,12 @@ namespace api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserAccountID")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("UserId");
+
+                    b.HasIndex("UserAccountID");
 
                     b.ToTable("User");
                 });
@@ -863,6 +868,15 @@ namespace api.Migrations
                     b.Navigation("Relationship");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("api.Models.User", b =>
+                {
+                    b.HasOne("api.Models.UserAccount", "UserAccount")
+                        .WithMany()
+                        .HasForeignKey("UserAccountID");
+
+                    b.Navigation("UserAccount");
                 });
 
             modelBuilder.Entity("api.Models.VoteResult", b =>

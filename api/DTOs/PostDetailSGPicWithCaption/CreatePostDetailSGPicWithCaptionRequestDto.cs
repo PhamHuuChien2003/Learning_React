@@ -11,7 +11,7 @@ namespace api.DTOs.PostDetailSGPicWithCaption
         public int? PostID { get; set; }
         [Required]
         [MinLength(5,ErrorMessage = "Content must be at least 5 character")]
-        [MaxLength(280,ErrorMessage = "Content cannot be over 280 character")]
+        [MaxLength(2800,ErrorMessage = "Content cannot be over 2800 character")]
         public string Content { get; set; }=string.Empty;
         [Required]
         [MaxLength(30,ErrorMessage = "HashTag cannot be over 30 character")]

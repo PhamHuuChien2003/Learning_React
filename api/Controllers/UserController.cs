@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.DTOs.User;
+using api.Helper;
 using api.Interfaces;
 using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
@@ -24,9 +25,9 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] UserQueryObject userQuery)
         {
-            var user =await _userRepo.GetAllAsync();
+            var user =await _userRepo.GetAllAsync(userQuery);
             var userDto = user.Select(s => s.ToUserDto());
 
             return Ok(userDto);

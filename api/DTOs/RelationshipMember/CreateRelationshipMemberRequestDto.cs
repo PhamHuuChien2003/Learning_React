@@ -11,6 +11,6 @@ namespace api.DTOs.RelationshipMember
         // public int RelationshipMemberId { get; set; }
         public int? UserId { get; set; }
         public int? RelationshipId { get; set; }
-        public List<CreateMessagerequestDto>? Messages { get; set; }
+        // public List<CreateMessagerequestDto>? Messages { get; set; }
     }
 }

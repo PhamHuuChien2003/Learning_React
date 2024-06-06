@@ -8,6 +8,7 @@ namespace api.Models
 {
     public class UserAccount : IdentityUser
     {
-        
+        // public int UserId {get; set;}
+        // public User? User {get; set;}
     }
 }

@@ -15,5 +15,7 @@ namespace api.Models
         public int Age { get; set; }
         public List<RelationshipMember> RelationshipMembers { get; set; } = new List<RelationshipMember>();
         public List<Post> Posts { get; set; } = new List<Post>();
+        public string? UserAccountID {get; set;}
+        public UserAccount? UserAccount {get; set;}
     }
 }

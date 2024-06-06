@@ -4,8 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.DTOs.Post;
+using api.Extensions;
+using api.Helper;
 using api.Interfaces;
 using api.Mappers;
+using api.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,16 +21,20 @@ namespace api.Controllers
     {
         private readonly ApplicationDBContext _context;
         private readonly IPostRepository _postRepo;
-        public PostController(ApplicationDBContext context, IPostRepository postRepo)
+        private readonly UserManager<UserAccount> _userManager;
+        private readonly IUserRepository _userRepo;
+        public PostController(ApplicationDBContext context, IPostRepository postRepo, UserManager<UserAccount> userManager, IUserRepository userRepo)
         {
             _postRepo = postRepo;
             _context = context;
+            _userManager = userManager;
+            _userRepo = userRepo;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] PostQueryObject postQuery)
         {
-            var post =await _postRepo.GetAllAsync();
+            var post =await _postRepo.GetAllAsync(postQuery);
             var postDto= post.Select(s => s.ToPostDto());
 
             return Ok(postDto);
@@ -47,7 +55,11 @@ namespace api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreatePostRequestDto createPostRequestDto)
         {
+            var userName = User.GetUsername();
+            var userAccount = await _userManager.FindByNameAsync(userName);
             var postModel = createPostRequestDto.ToPostFromCreateDTO();
+            var userModel = _userRepo.GetByAccountIdAsync(userAccount?.Id);
+            postModel.UserId = userModel?.Id;
             await _postRepo.CreateAsync(postModel);
             return CreatedAtAction(nameof(GetById),new{id=postModel.PostId},postModel.ToPostDto());
         }

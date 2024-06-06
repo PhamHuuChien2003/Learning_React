@@ -3,72 +3,25 @@ import { handleError } from "../Helpers/ErrorHandler.jsx";
 
 const api = "http://localhost:5149/api/";
 
-const getAllPosts = async () => {
-  const res = await axios.get('http://localhost:3001/posts')
-  return {
-    status: res?.status,
-    statusText: res.statusText,
-    data: res?.data?.map((post) => {
-      return {
-        ...post,
-        body: post?.body?.substring(0, 50) + (post?.body?.length > 50 ? '...' : '')
-      }
-    })
-  }
-}
-
-const getDetailsPost = async (idPost) => {
-  const res = await axios.get(`http://localhost:3001/posts/${idPost}`)
-  return {
-    status: res?.status,
-    statusText: res.statusText,
-    data: res?.data
-  }
-}
-
-const deletePost = async (idPost) => {
-  const res = await axios.delete(`http://localhost:3001/posts/${idPost}`)
-  return {
-    status: res?.status,
-    statusText: res.statusText,
-  }
-}
-
-const updatePost = async (idPost, data) => {
-  const res = await axios.patch(`http://localhost:3001/posts/${idPost}`, data)
-  return {
-    status: res?.status,
-    statusText: res.statusText,
-    data: res?.data
-  }
-}
-
-export {
-  getAllPosts,
-  getDetailsPost,
-  deletePost,
-  updatePost
-}  
-
-export const GetDataAPI = async (username, password) => {
+export const commentPostAPI = async (
+  title,
+  content,
+  symbol
+) => {
   try {
-    const res = await axios.post(api + "account/login", {
-      username: username,
-      password: password,
+    const data = await axios.post(api + `${symbol}`, {
+      title: title,
+      content: content,
     });
-    return res;
+    return data;
   } catch (error) {
     handleError(error);
   }
 };
 
-export const RegisterAPI = async (email, username, password) => {
+export const postGetAPI = async () => {
   try {
-    const data = await axios.post(api + "account/register", {
-      username: username,
-      password: password,
-      email: email,
-    });
+    const data = await axios.get(api + ``);
     return data;
   } catch (error) {
     handleError(error);

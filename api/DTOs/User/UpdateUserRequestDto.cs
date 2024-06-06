@@ -12,6 +12,7 @@ namespace api.DTOs.User
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public int Age { get; set; }
+        // public string UserAccountID {get; set;}
         // public List<UpdateRelationshipMemberRequestDto>? RelationshipMembers { get; set; }
         // public List<UpdatePostRequestDto>? Posts { get; set; }
     }

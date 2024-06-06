@@ -12,8 +12,8 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240502013221_initial")]
-    partial class initial
+    [Migration("20240606013322_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,13 +54,13 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "9f2f1494-2a3e-4fba-bece-bc652afd63bf",
+                            Id = "f9155b8c-5148-4d8f-a974-c3bb2efd178a",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "bb3a56f9-aaeb-4734-8a4d-d6145a96b6c2",
+                            Id = "7646fb6d-f5a9-4363-99dc-1005db68b4b8",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -554,7 +554,13 @@ namespace api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserAccountID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("UserId");
+
+                    b.HasIndex("UserAccountID");
 
                     b.ToTable("User");
                 });
@@ -863,6 +869,17 @@ namespace api.Migrations
                     b.Navigation("Relationship");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("api.Models.User", b =>
+                {
+                    b.HasOne("api.Models.UserAccount", "UserAccount")
+                        .WithMany()
+                        .HasForeignKey("UserAccountID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserAccount");
                 });
 
             modelBuilder.Entity("api.Models.VoteResult", b =>

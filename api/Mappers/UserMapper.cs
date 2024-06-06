@@ -17,6 +17,7 @@ namespace api.Mappers
                 FirstName = userModel.FirstName,
                 LastName = userModel.LastName,
                 Age = userModel.Age,
+                UserAccountID = userModel.UserAccountID,
                 RelationshipMembers = userModel.RelationshipMembers.Select(c=>c.ToRelationshipMemberDto()).ToList(),
                 Posts = userModel.Posts.Select(c=>c.ToPostDto()).ToList()
             };
@@ -28,6 +29,7 @@ namespace api.Mappers
                 FirstName = userDto.FirstName,
                 LastName = userDto.LastName,
                 Age = userDto.Age,
+                UserAccountID = userDto.UserAccountID,
                 // RelationshipMembers = userDto.RelationshipMembers.Select(c=>c.ToRelationshipMemberFromCreateDTO()).ToList(),
                 // Posts = userDto.Posts.Select(c=>c.ToPostFromCreateDTO()).ToList()
             };

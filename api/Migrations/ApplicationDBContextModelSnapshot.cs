@@ -51,13 +51,13 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "803532d6-093d-4027-a9c2-9b1b22ace628",
+                            Id = "eca545ba-bd41-4cc3-87ec-afff51e0a6af",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "202325da-de67-4f9a-af9a-6abe8088f611",
+                            Id = "d82508b0-86c8-490d-b95c-116932cccf06",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -551,7 +551,12 @@ namespace api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserAccountID")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("UserId");
+
+                    b.HasIndex("UserAccountID");
 
                     b.ToTable("User");
                 });
@@ -860,6 +865,15 @@ namespace api.Migrations
                     b.Navigation("Relationship");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("api.Models.User", b =>
+                {
+                    b.HasOne("api.Models.UserAccount", "UserAccount")
+                        .WithMany()
+                        .HasForeignKey("UserAccountID");
+
+                    b.Navigation("UserAccount");
                 });
 
             modelBuilder.Entity("api.Models.VoteResult", b =>

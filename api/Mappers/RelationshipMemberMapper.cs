@@ -25,7 +25,7 @@ namespace api.Mappers
             {
                 UserId = relationshipMemberDto.UserId,
                 RelationshipId = relationshipMemberDto.RelationshipId,
-                Messages = relationshipMemberDto.Messages.Select(c=>c.ToMessageFromCreateDTO()).ToList()
+                // Messages = relationshipMemberDto.Messages.Select(c=>c.ToMessageFromCreateDTO()).ToList()
             };
         }
         public static RelationshipMember ToRelationshipMemberFromUpdateDTO(this UpdateRelationshipMemberRequestDto relationshipMemberUpdateDto)
@@ -34,7 +34,7 @@ namespace api.Mappers
             {
                 UserId = relationshipMemberUpdateDto.UserId,
                 RelationshipId = relationshipMemberUpdateDto.RelationshipId,
-                Messages = relationshipMemberUpdateDto.Messages.Select(c=>c.ToMessageFromUpdateDTO()).ToList()
+                // Messages = relationshipMemberUpdateDto.Messages.Select(c=>c.ToMessageFromUpdateDTO()).ToList()
             };
         }
     }

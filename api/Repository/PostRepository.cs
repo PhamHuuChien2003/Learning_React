@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.DTOs.Post;
+using api.Helper;
 using api.Interfaces;
 using api.Mappers;
 using api.Models;
@@ -37,14 +38,26 @@ namespace api.Repository
             return postModel;
         }
 
-        public async Task<List<Post>> GetAllAsync()
+        public async Task<List<Post>> GetAllAsync(PostQueryObject postQuery)
         {
-            return await _context.Post.Include(c=>c.CommentPosts).Include(c=>c.ReactPosts).ToListAsync();
+            var post = _context.Post.Include(c=>c.CommentPosts).Include(c=>c.ReactPosts).Include(a=>a.User).AsQueryable();
+
+            if(!string.IsNullOrWhiteSpace(postQuery.SortBy))
+            {
+                if(postQuery.SortBy.Equals("posttime", StringComparison.OrdinalIgnoreCase))
+                {
+                    post = postQuery.IsDecsending ? post.OrderByDescending(s=>s.Posttime) : post.OrderBy(s=>s.Posttime);
+                }
+            }
+            var skipNumber = (postQuery.PageNumber - 1) * postQuery.PageSize;
+
+            return await post.Skip(skipNumber).Take(postQuery.PageSize).ToListAsync();
+        
         }
 
         public async Task<Post?> GetByIdAsync(int id)
         {
-            return await _context.Post.Include(c=>c.CommentPosts).Include(c=>c.ReactPosts).FirstOrDefaultAsync(i=>i.PostId == id);
+            return await _context.Post.Include(c=>c.CommentPosts).Include(c=>c.ReactPosts).Include(a=>a.User).FirstOrDefaultAsync(i=>i.PostId == id);
         }
 
         public async Task<Post?> UpdateAsync(int id, UpdatePostRequestDto postDto)

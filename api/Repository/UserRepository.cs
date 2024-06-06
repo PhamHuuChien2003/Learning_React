@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.DTOs.User;
+using api.Helper;
 using api.Interfaces;
 using api.Mappers;
 using api.Models;
@@ -37,9 +38,24 @@ namespace api.Repository
             return userModel;
         }
 
-        public async Task<List<User>> GetAllAsync()
+        public async Task<List<User>> GetAllAsync(UserQueryObject userQuery)
         {
-            return await _context.User.Include(c=>c.Posts).Include(c=>c.RelationshipMembers).ToListAsync();
+            var user = _context.User.Include(c=>c.Posts).Include(c=>c.RelationshipMembers).AsQueryable();
+            if (!string.IsNullOrWhiteSpace(userQuery.UserAccountID))
+            {
+                user = user.Where(s => s.UserAccountID.Contains(userQuery.UserAccountID));
+            }
+
+            if (!string.IsNullOrWhiteSpace(userQuery.FirstName))
+            {
+                user = user.Where(s => s.FirstName.Contains(userQuery.FirstName));
+            }
+             return await user.ToListAsync();
+        }
+
+        public async Task<User?> GetByAccountIdAsync(string id)
+        {
+             return await _context.User.FirstOrDefaultAsync(i=>i.UserAccountID == id);
         }
 
         public async Task<User?> GetByIdAsync(int id)
