@@ -55,11 +55,11 @@ export default function LeftPanel() {
     
     return(
     <>
-    <div class="left-panel">
-        <div class="left-panel-but" >
+    <div className="left-panel">
+        <div className="left-panel-but" >
             <ul>
                 <li>
-                    <span class="profile" style={{ backgroundImage: `url("./images/avt/selfpic.jpg")`}}></span>
+                    <span className="profile" style={{ backgroundImage: `url("./images/avt/selfpic.jpg")`}}></span>
                     <p><b>Phạm Hữu Chiến</b></p>
                 </li>
             </ul>
@@ -68,24 +68,24 @@ export default function LeftPanel() {
                 <li>
                     { seemore1 &&
                         <button onClick={handleSeemore1}>
-                            <div class="see-more">
-                                <div class="down-chn"><a href="#"><i class="fa-solid fa-chevron-down"></i></a></div>
+                            <div className="see-more">
+                                <div className="down-chn"><a href="#"><i className="fa-solid fa-chevron-down"></i></a></div>
                                 <p><b>See more</b></p>
                             </div>
                         </button>
                     }
                     { seeless1 &&
                         <button onClick={handleSeeless1}>
-                            <div class="see-more">
-                                <div class="down-chn"><a href="#"><i class="fa-solid fa-chevron-up"></i></a></div>
+                            <div className="see-more">
+                                <div className="down-chn"><a href="#"><i className="fa-solid fa-chevron-up"></i></a></div>
                                 <p><b>See more</b></p>
                             </div>
                         </button>
                     }                 
                 </li>
-                <hr class="line"></hr>
+                <hr className="line"></hr>
                 <li>  
-                    <div class="ur-sc"><p><b>Your shotcut</b></p></div>
+                    <div className="ur-sc"><p><b>Your shotcut</b></p></div>
                 </li>
             </ul>
             <ul>{List_icon_Left_panel_2}</ul>
@@ -93,16 +93,16 @@ export default function LeftPanel() {
                 <li>
                     { seemore2 &&
                         <button onClick={handleSeemore2}>
-                            <div class="see-more">
-                                <div class="down-chn"><a href="#"><i class="fa-solid fa-chevron-down"></i></a></div>
+                            <div className="see-more">
+                                <div className="down-chn"><a href="#"><i className="fa-solid fa-chevron-down"></i></a></div>
                                 <p><b>See more</b></p>
                             </div>
                         </button>
                     } 
                     { seeless2 &&
                         <button onClick={handleSeeless2}>
-                            <div class="see-more">
-                                <div class="down-chn"><a href="#"><i class="fa-solid fa-chevron-up"></i></a></div>
+                            <div className="see-more">
+                                <div className="down-chn"><a href="#"><i className="fa-solid fa-chevron-up"></i></a></div>
                                 <p><b>See less</b></p>
                             </div> 
                         </button>
@@ -110,16 +110,16 @@ export default function LeftPanel() {
                 </li>
             </ul>
         </div>
-        {/* <div class="links">
-            <div class="c4">
-                <p>Privacy</p> <span class="dot">.</span>
-                <p>Terms</p> <span class="dot">.</span>
-                <p>Advertising</p> <span class="dot">.</span>
+        {/* <div className="links">
+            <div className="c4">
+                <p>Privacy</p> <span className="dot">.</span>
+                <p>Terms</p> <span className="dot">.</span>
+                <p>Advertising</p> <span className="dot">.</span>
                 <p>Ad Choice</p>
             </div>  
-            <div class="c3l">  
-                <p>Cookies</p> <span class="dot">.</span>
-                <p>More</p> <span class="dot">.</span>
+            <div className="c3l">  
+                <p>Cookies</p> <span className="dot">.</span>
+                <p>More</p> <span className="dot">.</span>
                 <p>Meta c 2023</p> 
             </div>
         </div> */}

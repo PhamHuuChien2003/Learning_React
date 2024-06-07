@@ -9,7 +9,7 @@ import Post from './post/post'
 export default function MiddlePanel() {
 
     return(
-        <div class="middle-panel">
+        <div className="middle-panel">
             <Story/>
             <CreatePost/>
             <Post/>

@@ -5,17 +5,17 @@ import { DataFriendsRightPannel } from './dataFriend_Right_pannel'
 export default function Friends() {
     
     const ListFriend = DataFriendsRightPannel.map(DataFriendsRightPannel =>
-        <a class="friend" >
-            <div class="avt-person-left-panel">
+        <a className="friend" href='#' >
+            <div className="avt-person-left-panel">
                 <img src={DataFriendsRightPannel.src} alt={DataFriendsRightPannel.alt}></img>
-                <div class="dot-bl"><p></p></div>
+                <div className="dot-bl"><p></p></div>
             </div>
-            <p class="name"><b>{DataFriendsRightPannel.name}</b></p>
+            <p className="name"><b>{DataFriendsRightPannel.name}</b></p>
         </a>
     )
 
     return(
-        <div class="friends-section">
+        <div className="friends-section">
         {ListFriend}
         </div>
     )

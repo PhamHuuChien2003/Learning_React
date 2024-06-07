@@ -3,14 +3,14 @@ import { DataSponsored } from './dataSponsored'
 
 export default function SponsoredSection() {
     const List_Sponsored=DataSponsored.map(DataSponsored=>
-        <div class="sponsored-sections">
-                <div class="sponsored-sections-is">
+        <div className="sponsored-sections">
+                <div className="sponsored-sections-is">
                     <img src={DataSponsored.src}></img>
-                    <div class="descri">
-                        <div class="descri-top">
+                    <div className="descri">
+                        <div className="descri-top">
                             <p>{DataSponsored.descri}</p>
                         </div>
-                        <div class="descri-bot">
+                        <div className="descri-bot">
                             <p>{DataSponsored.link}</p>
                         </div>
                     </div>
@@ -20,7 +20,7 @@ export default function SponsoredSection() {
 
 
     return(
-        <div class="sponsored">
+        <div className="sponsored">
             {List_Sponsored}
          </div>
     )

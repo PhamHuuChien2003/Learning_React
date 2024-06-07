@@ -8,8 +8,8 @@ export default function SearchSection() {
 	
 	return(
 		<>
-		    <div class="search-section">
-				<FontAwesomeIcon icon="fa-solid fa-magnifying-glass" style={{color: "#585c65",}} class="icon-search"/>
+		    <div className="search-section">
+				<FontAwesomeIcon icon="fa-solid fa-magnifying-glass" style={{color: "#585c65",}} className="icon-search"/>
 				<input type="text" placeholder="   Search Facebook" />
 			</div>
 		</>

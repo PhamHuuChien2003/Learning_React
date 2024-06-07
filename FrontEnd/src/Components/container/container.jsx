@@ -10,7 +10,7 @@ export default function Container() {
 
 
     return(
-        <div class="container">
+        <div className="container">
           <LeftPanel/>
           <MiddlePanel/>
           <RightPanel/>  

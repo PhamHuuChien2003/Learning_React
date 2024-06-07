@@ -6,7 +6,7 @@ import LogoFB from "./LogoFB/LogoFB"
 export default function NavLeft() {
     return(
         <>
-            <div class="nav_left">
+            <div className="nav_left">
                 <LogoFB/>
                 <SearchSection/>
             </div>

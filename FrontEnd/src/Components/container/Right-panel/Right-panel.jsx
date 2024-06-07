@@ -12,17 +12,17 @@ export default function RightPanel() {
 
     
     return(
-        <div class="right-panel">
-          <div class="name-tags"><p>Sponsored</p></div>
+        <div className="right-panel">
+          <div className="name-tags"><p>Sponsored</p></div>
           <SponsoredSection/>
-          <hr class="line"/>
-          <div class="name-tags"><p>Friend requests</p></div>
+          <hr className="line"/>
+          <div className="name-tags"><p>Friend requests</p></div>
           <FriendRequests/>
-          <hr class="line"/>
-          <div class="name-tags"><p>Birthdays</p></div>
+          <hr className="line"/>
+          <div className="name-tags"><p>Birthdays</p></div>
           <Birthdays/>
-          <hr class="line"/>
-          <div class="name-tags"><p>Contacts</p></div>
+          <hr className="line"/>
+          <div className="name-tags"><p>Contacts</p></div>
           <Friends/>
         </div>
     )
