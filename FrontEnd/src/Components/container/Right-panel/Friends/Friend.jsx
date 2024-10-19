@@ -5,7 +5,7 @@ import { DataFriendsRightPannel } from './dataFriend_Right_pannel'
 export default function Friends() {
     
     const ListFriend = DataFriendsRightPannel.map(DataFriendsRightPannel =>
-        <a className="friend" href='#' >
+        <a className="friend" href='#' key={DataFriendsRightPannel.id}>
             <div className="avt-person-left-panel">
                 <img src={DataFriendsRightPannel.src} alt={DataFriendsRightPannel.alt}></img>
                 <div className="dot-bl"><p></p></div>

@@ -3,9 +3,9 @@ import { DataSponsored } from './dataSponsored'
 
 export default function SponsoredSection() {
     const List_Sponsored=DataSponsored.map(DataSponsored=>
-        <div className="sponsored-sections">
+        <div className="sponsored-sections" key={DataSponsored.id}>
                 <div className="sponsored-sections-is">
-                    <img src={DataSponsored.src}></img>
+                    <img src={DataSponsored.src} alt='#'></img>
                     <div className="descri">
                         <div className="descri-top">
                             <p>{DataSponsored.descri}</p>

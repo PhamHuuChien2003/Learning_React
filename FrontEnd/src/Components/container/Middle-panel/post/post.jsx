@@ -12,13 +12,14 @@ import { useState } from "react";
 export default function Post() {
 
   const [postPageParam,setpostPageParam] = useState(0);
-  
-  const DataPost1=useQueryFetchPost(postPageParam);
 
+  const DataPost1=useQueryFetchPost(1);
+  console.log("data",DataPost1);
 
 
   const ListPost = DataPost.map((post) => (
-    <div className="post">
+  // const ListPost = DataPost1?.data?.map((post) => (
+    <div className="post" key={post.postid}>
       <Top {...post} />
       <Content {...post} />
       <PostBot {...post} />

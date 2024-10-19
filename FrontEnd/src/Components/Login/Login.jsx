@@ -20,6 +20,7 @@ export default function Login(props) {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(validation) });
+  console.log("Chao Hieu")
 
   const handleLogin = (form) => {
     try {
